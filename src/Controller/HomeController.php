@@ -17,5 +17,19 @@ class HomeController extends AbstractController
             'controller_name' => 'HomeController',
         ]);
     }
+
+    public function aPropos(): Response
+    {
+        return $this->render('home/apropos.html.twig', [
+            'controller_name' => 'HomeController',
+        ]);
+    }
+
+    public function contact(): Response
+    {
+        return $this->render('home/contact.html.twig', [
+            'controller_name' => 'HomeController',
+        ]);
+    }
     
 }

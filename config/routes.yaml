@@ -9,3 +9,16 @@ accueil:
 accueil2:
     path: /home
     controller: App\Controller\HomeController::index
+
+accueil3:
+    path: /
+    controller: App\Controller\HomeController::index
+
+apropos:
+    path: /home/apropos
+    controller: App\Controller\HomeController::aPropos
+
+contact:
+    path: /home/contact
+    controller: App\Controller\HomeController::contact
+    
