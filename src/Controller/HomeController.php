@@ -18,6 +18,16 @@ class HomeController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/programme", name="index_programme")
+     */
+
+    public function programme () {
+        return $this->render('home/programme.html.twig',
+        ['controller_name'=> 'HomeController',
+        ]);
+    }
+
     public function aPropos(): Response
     {
         return $this->render('home/apropos.html.twig', [
