@@ -28,6 +28,26 @@ class HomeController extends AbstractController
         ]);
     }
 
+     /**
+     * @Route("/actualite", name="actualite")
+     */
+
+    public function actualite () {
+        return $this->render('home/actualite.html.twig',
+        ['controller_name'=> 'HomeController',
+        ]);
+    }
+
+     /**
+     * @Route("/galleries", name="galleries")
+     */
+
+    public function galleries () {
+        return $this->render('home/galleries.html.twig',
+        ['controller_name'=> 'HomeController',
+        ]);
+    }
+
     public function aPropos(): Response
     {
         return $this->render('home/apropos.html.twig', [
