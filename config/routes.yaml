@@ -2,9 +2,9 @@
 #    path: /
 #    controller: App\Controller\DefaultController::index
 
-default:
-    path: /default
-    controller: App\Controller\DefaultController::index
+#default:
+#    path: /default
+#    controller: App\Controller\DefaultController::index
 
 accueil:
     path: /accueil
@@ -25,4 +25,11 @@ apropos:
 contact:
     path: /home/contact
     controller: App\Controller\HomeController::contact
-    
+
+bob:
+    path: /default
+    controller: App\Controller\DefaultController::bob    
+
+actu:
+    path: /actu
+    controller: App\Controller\DefaultController::affichage
