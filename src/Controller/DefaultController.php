@@ -27,29 +27,39 @@ Class DefaultController extends AbstractController
 
         // 1- Les paramètres de la requête
             // A - Les paramètres contenus dans les routes 
-
     
     /**
-     * @Route("/actu/{id}", name="")     * 
+     * @Route("/voirActu/{id}", name="")     * 
      */
 
     public function voirActu ($id) : Response {
-        return new Response(" Voici l'actualité de ".$id.".");
+        return new Response(" Voici l'actualité de $id");
     }
 
     // REPONSE & VUE
     /**
-     * @Route("/actu/{id}", name="index_affichage")
+     * @Route("/article/{id}", name="index_affichage")
      */
     public function affichage($id)
     {
       // On utilise le raccourci : il crée un objet Response
-      New Response;
       // Et lui donne comme contenu le contenu du template
-      return $this->render('DefaultController/index.html.twig', array(
+      return $this->render('DefaultController/affichage.html.twig', array(
         'id'  => $id,
       ));
     }
+
+      // REDIRECTION
+    // return $this->redirectToRoute('home');
+    /**
+     * @Route("/redirect/{id}", name="index_redir")
+     */
+    public function redirection($id)
+    {
+        return $this->redirectToRoute('home');
+    }
+
+
 
 
 }

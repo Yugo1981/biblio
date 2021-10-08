@@ -30,6 +30,6 @@ bob:
     path: /default
     controller: App\Controller\DefaultController::bob    
 
-actu:
-    path: /actu
-    controller: App\Controller\DefaultController::affichage
+#actu:
+#    path: /actu
+#    controller: App\Controller\DefaultController::affichage
