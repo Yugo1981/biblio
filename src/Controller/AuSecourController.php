@@ -21,13 +21,13 @@ class AuSecourController extends AbstractController
       // REDIRECTION
     // return $this->redirectToRoute('home');
     
-    /**
-     * @Route("/voir", name="voir")
-     */
+     /**
+      * @Route("/voir", name="voir")
+      */
 
-    // /**
-    //  * @Route("/voir", name="index_redir")
-    //  */
+     /**
+      * @Route("/voir", name="index_redirts")
+      */
 
     public function redirection()
     {
