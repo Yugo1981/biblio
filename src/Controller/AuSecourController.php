@@ -17,4 +17,20 @@ class AuSecourController extends AbstractController
             'controller_name' => 'AuSecourController',
         ]);
     }
+
+      // REDIRECTION
+    // return $this->redirectToRoute('home');
+    
+    /**
+     * @Route("/voir", name="voir")
+     */
+
+    // /**
+    //  * @Route("/voir", name="index_redir")
+    //  */
+
+    public function redirection()
+    {
+        return $this->redirectToRoute('apropos');
+    }
 }
