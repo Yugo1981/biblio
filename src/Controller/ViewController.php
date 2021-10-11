@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use PhpParser\Node\Expr\New_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -63,4 +64,18 @@ class ViewController extends AbstractController {
             'prenom' => $prenom,
           ));
      }
+
+    /**
+     * @Route ("/afficherliste", name="afficherliste")
+     */
+    
+    public function afficherliste () : Response {
+        $nom = ['Follereau','Lopez','Nwhela','Traore','Ndao','Khassaonew','Thuet','Planiteye','Nabi'];
+        $prenom = ['Fabrice','Rudy','Valery','Bandjougou','Modou','Moath','Matthieu','Ange','Nabi'];
+
+        return $this->render('ViewController/afficherliste.html.twig', array(
+            'nom'  => $nom, 
+            'prenom' => $prenom,
+        ));
+    }
 }

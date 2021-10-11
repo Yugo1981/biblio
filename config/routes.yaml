@@ -6,6 +6,10 @@
 #    path: /default
 #    controller: App\Controller\DefaultController::index
 
+afficher:
+    path: /view/afficherliste
+    controller: App\ViewController::afficherliste
+
 accueil:
     path: /accueil
     controller: App\Controller\HomeController::index
