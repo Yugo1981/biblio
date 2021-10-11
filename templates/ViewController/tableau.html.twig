@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} 
+    Tableau Controller
+{% endblock %}
+
+{% block body %}
+        <h1> {{ cours_name }}</h1>
+
+        <ul>
+            
+            <li>
+                {{ tableau[0] }}
+            </li>
+            <li>
+             {{ tableau[1] }}
+            </li>
+            <li>
+             {{ tableau[2] }}
+            </li>
+        </ul>
+
+
+{% endblock %}
