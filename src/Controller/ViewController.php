@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Doctrine\DBAL\Abstraction\Result;
 use PhpParser\Node\Expr\New_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -77,5 +78,14 @@ class ViewController extends AbstractController {
             'nom'  => $nom, 
             'prenom' => $prenom,
         ));
+    }
+
+    /**
+     * @Route("/origine", name="origine")
+     */
+    public function origine() : Response {
+        return $this->render('ViewController/origine.html.twig', [
+            'controller_name' => 'ViewController'
+        ]);
     }
 }
