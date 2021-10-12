@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
  /**
-     * @Route("/view", name="view")
+     * @Route("/view")
      */
 
 class ViewController extends AbstractController {

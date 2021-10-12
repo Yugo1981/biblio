@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} VIEW SYMFONY {% endblock %}
+
+{% block body %}
+
+<h2> VIEW SYMFONY </h2>
+<hr>
+
+<ul> 
+    <h3> 
+        <a href="{{ path('view_tab') }}">Lien vers tableau de note</a>
+        <a href="{{ path('afficherliste') }}">Lien vers les élèves</a>        
+    </h3>
+
+</ul>
+
+
+
+{% endblock %}
