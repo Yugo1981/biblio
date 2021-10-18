@@ -1,22 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} VIEW SYMFONY {% endblock %}
+{% block title %} Vue utilisateur {% endblock %}
 
 {% block body %}
+<style>
+    .button { background-color : cyan}
+</style>
 
-<h2> VIEW SYMFONY </h2>
+<h2> Utilisateur bienvenu </h2>
 <hr>
 
-<ul> 
+<ul class="button"> 
     <h3> 
-        <a href="{{ path('index_bibliotheque') }}">Accueil</a>
-        <a href="{{ path('apropos_bibliotheque') }}">A propos</a>
-        <a href="{{ path('livre_bibliotheque') }}">Les livres</a>
-        <a href="{{ path('location_bibliotheque') }}">Les locations</a>
-        <a href="{{ path('documentation_bibliotheque') }}">Documentations</a>
-        <a href="{{ path('contacter_bibliotheque') }}">Nous contacter</a>
-        <a href="{{ path('connexion_bibliotheque') }}">Connexion</a>
-        <a href="{{ path('administration_bibliotheque') }}">Administration</a> 
+        <button><a href="{{ path('index_bibliotheque') }}">Accueil</a></button>
+        <button><a href="{{ path('apropos_bibliotheque') }}">A propos</a></button>
+        <button><a href="{{ path('livre_bibliotheque') }}">Les livres</a></button>
+        <button><a href="{{ path('location_bibliotheque') }}">Les locations</a></button>
+        <button><a href="{{ path('documentation_bibliotheque') }}">Documentations</a></button>
+        <button><a href="{{ path('contacter_bibliotheque') }}">Nous contacter</a></button>
+        <button><a href="{{ path('connexion_bibliotheque') }}">Connexion</a></button>
+        <button><a href="{{ path('administration_bibliotheque') }}">Administration</a></button> 
     </h3>
 </ul>
 {% endblock %}
