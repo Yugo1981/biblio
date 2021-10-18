@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Menu Admin {% endblock %}
+
+{% block body %}
+
+<h2> Partie administration de la bibliotheque </h2>
+<hr>
+
+<ul> 
+    <h3> 
+        <a href="{{ path('index_bibliotheque') }}">Accueil</a>
+        <a href="{{ path('system_bibliotheque') }}">Système</a>
+        <a href="{{ path('utilisateurs_bibliotheque') }}">Utilisateur</a>
+        <a href="{{ path('contenu_bibliotheque') }}">Contenu</a>
+        <a href="{{ path('extenssion_bibliotheque') }}">Extenssions</a>
+        <a href="{{ path('logout_bibliotheque') }}">Logout</a>
+    </h3>
+</ul>
+{% endblock %}

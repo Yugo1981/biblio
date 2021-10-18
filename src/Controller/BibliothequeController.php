@@ -54,7 +54,7 @@ class BibliothequeController extends AbstractController
         ]);
     }
 
-     /**
+    /**
      * @Route("/documentation", name="documentation_bibliotheque")
      */
 
@@ -65,7 +65,7 @@ class BibliothequeController extends AbstractController
         ]);
     }
 
-     /**
+    /**
      * @Route("/contacter", name="contacter_bibliotheque")
      */
 
@@ -76,7 +76,7 @@ class BibliothequeController extends AbstractController
         ]);
     }
 
-     /**
+    /**
      * @Route("/connexion", name="connexion_bibliotheque")
      */
 
@@ -87,7 +87,7 @@ class BibliothequeController extends AbstractController
         ]);
     }
 
-     /**
+    /**
      * @Route("/administration", name="administration_bibliotheque")
      */
 
@@ -97,5 +97,70 @@ class BibliothequeController extends AbstractController
             'controller_name' => 'BibliothequeController',
         ]);
     }
-    
+
+    /**
+     * @Route("/admin", name="admin_bibliotheque")
+     */
+
+    public function admin(): Response
+    {
+        return $this->render('bibliotheque/menu_admin.html.twig', [
+            'controller_name' => 'BibliothequeController',
+        ]);
+    }
+
+    /**
+     * @Route("/system", name="system_bibliotheque")
+     */
+
+    public function system(): Response
+    {
+        return $this->render('bibliotheque/system.html.twig', [
+            'controller_name' => 'BibliothequeController',
+        ]);
+    }
+
+    /**
+     * @Route("/utilisateurs", name="utilisateurs_bibliotheque")
+     */
+
+    public function utilisateur(): Response
+    {
+        return $this->render('bibliotheque/utilisateurs.html.twig', [
+            'controller_name' => 'BibliothequeController',
+        ]);
+    }
+
+    /**
+     * @Route("/contenu", name="contenu_bibliotheque")
+     */
+
+    public function contenu(): Response
+    {
+        return $this->render('bibliotheque/contenu.html.twig', [
+            'controller_name' => 'BibliothequeController',
+        ]);
+    }
+
+    /**
+     * @Route("/extenssion", name="extenssion_bibliotheque")
+     */
+
+    public function extenssion(): Response
+    {
+        return $this->render('bibliotheque/extenssion.html.twig', [
+            'controller_name' => 'BibliothequeController',
+        ]);
+    }
+
+    /**
+     * @Route("/logout", name="logout_bibliotheque")
+     */
+
+    public function logOut(): Response
+    {
+        return $this->render('bibliotheque/logout.html.twig', [
+            'controller_name' => 'BibliothequeController',
+        ]);
+    }
 }
