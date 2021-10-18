@@ -14,6 +14,10 @@
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        {% block body %}
+        {% include "menu_user.html.twig" %}
+        {% include "menu_admin.html.twig" %}
+
+        {% endblock %}
     </body>
 </html>
