@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} VIEW SYMFONY {% endblock %}
+
+{% block body %}
+<h2> VIEW SYMFONY </h2>
+<hr>
+
+<ul>
+<h1> // I - Operation Arithmetique dans la vue </h1>
+
+     <div>
+        <h3> // 1 - Addition </h3>
+        Afficher le resultat du Calcul X + Y
+            {% set x = 15 %} 
+            {% set y = 20  %}
+            {% set Somme = x + y %}
+            <br>
+            {{ x }} + {{ y }} = {{ Somme }} <br>
+            Reponse = {{ Somme }}
+    </div>
+
+</ul>
+
+{% endblock %}

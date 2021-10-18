@@ -52,7 +52,7 @@ class ViewController extends AbstractController {
         }
 
     /**
-     * @Route("/afficher", name="afficher")
+     * @Route("/afficher",")
      */
 
      public function affichage() : Response {
@@ -87,5 +87,14 @@ class ViewController extends AbstractController {
         return $this->render('ViewController/origine.html.twig', [
             'controller_name' => 'ViewController'
         ]);
+    }
+
+    /**
+     * @Route("/math")
+     */
+    public function calcul() : Response {
+        return $this->render('ViewController/math.html.twig', [
+            'controller_name' => 'ViewController',
+        ]);        
     }
 }
