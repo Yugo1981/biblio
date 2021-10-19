@@ -17,7 +17,17 @@
         {% block body %}
         {% include "menu_user.html.twig" %}
         {% include "menu_admin.html.twig" %}
-
+        {% endblock %}
+        {% block footer %}
+        <style>
+            .div { background-color : black ;}
+            .p { color : white ; text-align : center}
+        </style> 
+            <div class="div">
+                <p class="p">CRP Paul et Liliane Guinot</p>
+                <p class="p">24 Bd De Gery</p>
+                <p class="p">94800 Villejuif</p>
+            </div>
         {% endblock %}
     </body>
 </html>
