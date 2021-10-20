@@ -7,23 +7,23 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/bibliotheque")
+ * @Route("/biblio")
  */
 
 class BibliothequeController extends AbstractController
 {
     /**
-     * @Route("/", name="index_bibliotheque")
+     * @Route("/", name="index_biblio")
      */
     public function index(): Response
     {
-        return $this->render('/base.html.twig', [
+        return $this->render('bibliotheque/index.html.twig', [
             'controller_name' => 'BibliothequeController',
         ]);
     }
 
     /**
-     * @Route("/apropos", name="apropos_bibliotheque")
+     * @Route("/apropos", name="apropos_biblio")
      */
     public function aPropos(): Response
     {
@@ -33,7 +33,7 @@ class BibliothequeController extends AbstractController
     }
 
     /**
-     * @Route("/livre", name="livre_bibliotheque")
+     * @Route("/livre", name="livre_biblio")
      */
 
     public function livre(): Response
@@ -44,7 +44,7 @@ class BibliothequeController extends AbstractController
     }
 
     /**
-     * @Route("/location", name="location_bibliotheque")
+     * @Route("/location", name="location_biblio")
      */
 
     public function location(): Response
@@ -55,7 +55,7 @@ class BibliothequeController extends AbstractController
     }
 
     /**
-     * @Route("/documentation", name="documentation_bibliotheque")
+     * @Route("/documentation", name="documentation_biblio")
      */
 
     public function documentation(): Response
@@ -66,7 +66,7 @@ class BibliothequeController extends AbstractController
     }
 
     /**
-     * @Route("/contacter", name="contacter_bibliotheque")
+     * @Route("/contacter", name="contacter_biblio")
      */
 
     public function nousContacter(): Response
@@ -77,7 +77,7 @@ class BibliothequeController extends AbstractController
     }
 
     /**
-     * @Route("/connexion", name="connexion_bibliotheque")
+     * @Route("/connexion", name="connexion_biblio")
      */
 
     public function connecter(): Response
@@ -88,7 +88,7 @@ class BibliothequeController extends AbstractController
     }
 
     /**
-     * @Route("/administration", name="administration_bibliotheque")
+     * @Route("/administration", name="administration_biblio")
      */
 
     public function administration(): Response
@@ -99,7 +99,7 @@ class BibliothequeController extends AbstractController
     }
 
     /**
-     * @Route("/admin", name="admin_bibliotheque")
+     * @Route("/admin", name="admin_biblio")
      */
 
     public function admin(): Response
@@ -110,7 +110,7 @@ class BibliothequeController extends AbstractController
     }
 
     /**
-     * @Route("/system", name="system_bibliotheque")
+     * @Route("/system", name="system_biblio")
      */
 
     public function system(): Response
@@ -121,7 +121,7 @@ class BibliothequeController extends AbstractController
     }
 
     /**
-     * @Route("/utilisateurs", name="utilisateurs_bibliotheque")
+     * @Route("/utilisateurs", name="utilisateurs_biblio")
      */
 
     public function utilisateur(): Response
@@ -132,7 +132,7 @@ class BibliothequeController extends AbstractController
     }
 
     /**
-     * @Route("/contenu", name="contenu_bibliotheque")
+     * @Route("/contenu", name="contenu_biblio")
      */
 
     public function contenu(): Response
@@ -143,7 +143,7 @@ class BibliothequeController extends AbstractController
     }
 
     /**
-     * @Route("/extenssion", name="extenssion_bibliotheque")
+     * @Route("/extenssion", name="extenssion_biblio")
      */
 
     public function extenssion(): Response
@@ -154,7 +154,7 @@ class BibliothequeController extends AbstractController
     }
 
     /**
-     * @Route("/logout", name="logout_bibliotheque")
+     * @Route("/logout", name="logout_biblio")
      */
 
     public function logOut(): Response
@@ -162,5 +162,16 @@ class BibliothequeController extends AbstractController
         return $this->render('bibliotheque/logout.html.twig', [
             'controller_name' => 'BibliothequeController',
         ]);
+    }
+
+    
+    /**
+     * @Route ("/afficher", name="afficher_biblio")
+     */
+
+    public function afficher($id) {
+        return $this->render('BibliothequeController/afficher.html.twig', array(
+            'id'  => $id,
+        ));
     }
 }
