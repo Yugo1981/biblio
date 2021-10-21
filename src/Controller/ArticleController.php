@@ -35,14 +35,14 @@ use App\Entity\Article;
     // /**
     //  * @Route("/new", name="article_new", methods={"GET","POST"})
     //  */
-    // public function new_articles(Request $request): Response
+    // public function new_article(Request $request): Response
     // {
     //     // Je fais appelle à Doctrine/Manager pour l'insertion de mes données
     //     $em = $this->getDoctrine()->getManager();
 
     //     // Je donne des valeurs à mon Article
     //     $articles = new Article();
-    //     $articles->setTitle("Le Doctrine au Coeur de Symfony");
+    //     $articles->setTitre("Le Doctrine au Coeur de Symfony");
     //     $articles->setContenu("Un très court article.");
     // //    $articles->setDate(2021-10-20-14-51-45);
 
