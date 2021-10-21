@@ -2,13 +2,20 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\Article;
+use App\Form\ArticleType;
+use App\Repository\ArticleRepository;
+
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Repository\ArticleRepository;
-use App\Entity\Article;
 
- /**
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
+
+
+/**
      * @Route("/article")
      */
     
@@ -30,7 +37,59 @@ use App\Entity\Article;
             'articles' => $articles,
         ]);
     }
-     
+    
+    /**
+     * @Route("/{ id }", name="article_id",  methods={"GET"})
+     */
+
+    public function affichage(Request $request, ArticleRepository $articlesRepository, EntityManager $manager, Article $articles) : Response 
+    {
+        return $this->render('article/nouveau.html.twig', [
+            'id' =>$articles->getId(),
+            "articles" => $articles
+        ]);
+    }
+    /**
+     * @Route("/new", name="article_new")
+    */
+    public function nouveau(Request $request, EntityManager $em) : Response
+    {    
+                $articles = new Article();
+            
+                $articles->setTitre(" Titre de l'article N°$i ");
+                $articles->setContenu(" Contenu de l'article N° $i ");  
+                $articles->setDate(new \DateTime());
+                $articles->setResume(" Resume de l'article N° $i ");
+                $articles->setImage(" Image N° $i ");
+            $em->persist($articles);            
+        $em->flush();
+    }
+
+    // /**
+    //  * @Route("/new", name="articles_nouveau", methods={"GET", "POST"})
+    //  */
+    // public function nouveau(Request $request, EntityManagerInterface $em): Response
+    // {
+
+    //    $articles = new Articles();
+
+    //    // Ici je fais un enregistrement Manuel, on verra la suite avec le  Formulaire
+    //    $articles->setTitle(" Titre de mon Article");
+    //    $articles->setImage(" photo de mon Article");
+    //    $articles->setResume(" Titre de mon Article");
+    //    $articles->setDate(new  \DateTime());
+    //    $articles->setContenu(" Contenu de mon Article Contenu de mon ArticleContenu de mon ArticleContenu de mon ArticleContenu de mon Article");
+
+    //    // Je persiste Mon Enregistrement
+    //    $em->persist($articles);
+    //    $em->flush();
+
+    //    // J'envoie au niveau du temple pour l'enregistrement
+    //    return $this->render('articles/nouveau.html.twig', [
+    //        'articles' => $articles,
+    //    ]);
+
+    // }
     
     // /**
     //  * @Route("/new", name="article_new", methods={"GET","POST"})
