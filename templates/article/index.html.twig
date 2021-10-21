@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Articles{% endblock %}
+{% block title %}Nouveaux Articles{% endblock %}
 
 {% block body %}
     <h1>Articles index</h1>
@@ -8,7 +8,7 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Title</th>
+                <th>Titre</th>
                 <th>Contenu</th>
 
             </tr>
@@ -19,8 +19,10 @@
         {# https://twig.symfony.com/doc/3.x/tags/for.html #}
             <tr>
                 <td>{{ article.id }}</td>
-                <td>{{ article.Title }}</td>
-                <td>{{ article.Contenu }}</td>
+                <td>{{ article.titre }}</td>
+                <td>{{ article.contenu }}</td>
+                <td>{{ article.date| date("d/m/Y") }}</td>
+
             </tr>
         {% else %}
             <tr>
