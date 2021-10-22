@@ -66,7 +66,7 @@ use Doctrine\ORM\EntityManagerInterface;
         return $this->render('article/nouveau.html.twig', [
             'articles' => $articles,
         ]);
-    }
+    }   
 
     // /**
     //  * @Route("/new", name="articles_nouveau", methods={"GET", "POST"})
