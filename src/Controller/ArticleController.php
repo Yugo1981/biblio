@@ -38,17 +38,7 @@ use Doctrine\ORM\EntityManagerInterface;
         ]);
     }
     
-    /**
-     * @Route("/{ id }", name="article_id",  methods={"GET"})
-     */
 
-    public function affichage(Request $request, ArticleRepository $articlesRepository, EntityManager $manager, Article $articles) : Response 
-    {
-        return $this->render('article/nouveau.html.twig', [
-            'id' =>$articles->getId(),
-            "articles" => $articles
-        ]);
-    }
     /**
      * @Route("/new", name="article_new")
     */
@@ -67,6 +57,18 @@ use Doctrine\ORM\EntityManagerInterface;
             'articles' => $articles,
         ]);
     }   
+
+        /**
+     * @Route("/{ id }", name="article_id",  methods={"GET"})
+     */
+
+    public function affichage(Request $request, ArticleRepository $articlesRepository, EntityManager $manager, Article $articles) : Response 
+    {
+        return $this->render('article/affichage.html.twig', [
+            'id' =>$articles->getId(),
+            "articles" => $articles,
+        ]);
+    }
 
     // /**
     //  * @Route("/new", name="articles_nouveau", methods={"GET", "POST"})
