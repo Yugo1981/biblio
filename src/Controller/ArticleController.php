@@ -52,17 +52,20 @@ use Doctrine\ORM\EntityManagerInterface;
     /**
      * @Route("/new", name="article_new")
     */
-    public function nouveau(Request $request, EntityManager $em) : Response
+    public function nouveau(Request $request, EntityManagerInterface $em) : Response
     {    
                 $articles = new Article();
             
-                $articles->setTitre(" Titre de l'article N°$i ");
-                $articles->setContenu(" Contenu de l'article N° $i ");  
+                $articles->setTitre(" Titre de l'article");
+                $articles->setContenu(" Contenu de l'article");  
                 $articles->setDate(new \DateTime());
-                $articles->setResume(" Resume de l'article N° $i ");
-                $articles->setImage(" Image N° $i ");
+                $articles->setResume(" Resume de l'article");
+                $articles->setImage(" Image de l'article");
             $em->persist($articles);            
         $em->flush();
+        return $this->render('article/nouveau.html.twig', [
+            'articles' => $articles,
+        ]);
     }
 
     // /**
@@ -71,10 +74,10 @@ use Doctrine\ORM\EntityManagerInterface;
     // public function nouveau(Request $request, EntityManagerInterface $em): Response
     // {
 
-    //    $articles = new Articles();
+    //    $articles = new Article();
 
     //    // Ici je fais un enregistrement Manuel, on verra la suite avec le  Formulaire
-    //    $articles->setTitle(" Titre de mon Article");
+    //    $articles->setTitre(" Titre de mon Article");
     //    $articles->setImage(" photo de mon Article");
     //    $articles->setResume(" Titre de mon Article");
     //    $articles->setDate(new  \DateTime());
@@ -85,7 +88,7 @@ use Doctrine\ORM\EntityManagerInterface;
     //    $em->flush();
 
     //    // J'envoie au niveau du temple pour l'enregistrement
-    //    return $this->render('articles/nouveau.html.twig', [
+    //    return $this->render('article/nouveau.html.twig', [
     //        'articles' => $articles,
     //    ]);
 

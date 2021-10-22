@@ -10,6 +10,9 @@
                 <th>Titre</th>
                 <th>Contenu</th>
                 <th>Date</th>
+                <th>Resume</th>
+                <th>Image</th>
+
 
 
             </tr>
@@ -22,7 +25,8 @@
                 <td>{{ article.titre }}</td>
                 <td>{{ article.contenu }}</td>
                 <td>{{ article.date| date("d/m/Y") }}</td>
-
+                <td>{{ article.resume }}</td>
+                <td>{{ article.image }}</td>
             </tr>
         {% else %}
             <tr>
