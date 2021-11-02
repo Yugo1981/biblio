@@ -20,16 +20,16 @@
         </thead>
         <tbody>
         {# {% include 'menu_article.html.twig' %} #}
-        {% for article in articles %}
-        {# https://twig.symfony.com/doc/3.x/tags/for.html #}
+
+        {% for articl in article %}
             <tr>
-                <td>{{ article.id }}</td>
-                <td>{{ article.titre }}</td>
-                <td>{{ article.resume }}</td>
-                <td><button><a href="{{ path('article_id' , {id: article.id}) }}">Cliquez</a></button></td>
-                {# <td>{{ article.contenu }}</td>
-                <td>{{ article.date| date("d/m/Y") }}</td>
-                <td>{{ article.image }}</td> #}
+                <td>{{ articl.id }}</td>
+                <td>{{ articl.titre }}</td>
+                <td>{{ articl.resume }}</td>
+               <td><button><a href="{{ path('articles_show' , {id: articl.id}) }}">Cliquez</a></button></td>
+                {# <td>{{ articl.contenu }}</td>
+                <td>{{ articl.date| date("d/m/Y") }}</td>
+                <td>{{ articl.image }}</td> #}
             </tr>
         {% else %}
             <tr>

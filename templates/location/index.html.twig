@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle Location{% endblock %}
+
+{% block body %}
+    <h1>Location index</h1>
+<table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>Titre</th>
+                <th>Catgorie</th>
+                <th>Image</th>
+                <th>Description</th>
+                <th>Valeur</th>
+                <th>Adresse</th>
+                <th>Accessibilité</th>
+                <th>Status</th>
+                <th>A la une</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for location in locations %}
+            <tr>
+                <td>{{ location.id }}</td>
+                <td>{{ location.date }}</td>
+                <td>{{ location.titre }}</td>
+                <td>{{ location.categorie }}</td>
+                <td>{{ location.image }}</td>
+                <td>{{ location.description }}</td>
+                <td>{{ location.valeur }}</td>
+                <td>{{ location.adresse }}</td>
+                <td>{{ location.accessibility }}</td>
+                <td>{{ location.status }}</td>
+                <td>{{ location.a_la_une }}</td>
+            </tr>
+        {% else %}
+            {<tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

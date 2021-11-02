@@ -13,18 +13,19 @@
             </tr>
         </thead>
         <tbody>
-        {# {# {% for categorie in categories %}
-        {# https://twig.symfony.com/doc/3.x/tags/for.html #}
-            {# <tr>
-                <td>{{ categorie.id }}</td>
-                <td>{{ categorie.titre }}</td>
-                <td>{{ categorie.resume }}</td>
+        {% for categori in categorie %}
+            <tr>
+                <td>{{ categori.id }}</td>
+                <td>{{ categori.titre }}</td>
+                <td>{{ categori.resume }}</td>
+                <td><button><a href="{{ path('categories_show' , {id: categori.id}) }}">Cliquez</a></button></td>
+
             </tr>
-        {% else %} #}
-            {# <tr>
+        {% else %}
+            {<tr>
                 <td colspan="5">no records found</td>
-            </tr> #}
-        {# {% endfor %} #}
+            </tr>
+        {% endfor %}
         </tbody>
     </table>
 {% endblock %}
