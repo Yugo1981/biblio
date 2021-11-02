@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Article;
-use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
 
 use Symfony\Component\HttpFoundation\Request;
@@ -11,7 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Doctrine\ORM\EntityManager;
+//use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 
 
@@ -27,10 +26,10 @@ use Doctrine\ORM\EntityManagerInterface;
 
     // 1e Methode
     
-    public function index(): Response
+    public function index(Article $articles, ArticleRepository $articleRepository): Response
     {   
-        $repo= $this->getDoctrine()->getRepository(Article::class);
-        $articles = $repo->findAll();
+//        $repo= $this->getDoctrine()->getRepository(Article::class);
+        $articles = $articleRepository->findAll();
 
         return $this->render('article/index.html.twig', [
             'controller_name' => 'ArticleController',
@@ -59,14 +58,13 @@ use Doctrine\ORM\EntityManagerInterface;
     }   
 
         /**
-     * @Route("/{ id }", name="article_id",  methods={"GET"})
+     * @Route("/{id}", name="article_id",  methods={"GET","POST"})
      */
 
-    public function affichage(Request $request, ArticleRepository $articlesRepository, EntityManager $manager, Article $articles) : Response 
+    public function affichage(Article $articles):Response 
     {
         return $this->render('article/affichage.html.twig', [
-            'id' =>$articles->getId(),
-            "articles" => $articles,
+            "article" => $articles,
         ]);
     }
 
