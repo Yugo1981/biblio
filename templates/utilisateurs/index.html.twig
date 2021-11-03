@@ -32,7 +32,7 @@
                 <td>{{ utilisateur.adresse }}</td>
                 <td>{{ utilisateur.email }}</td>
                 <td>{{ utilisateur.role }}</td>
-                {# <td><button><a href="{{ path('utilisateurs_show' , {id: utilisateurs.id}) }}">Cliquez</a></button></td> #}
+                <td><button><a href="{{ path('utilisateurs_show' , {id: utilisateur.id}) }}">Cliquez</a></button></td>
             </tr>
         {% else %}
             {<tr>
