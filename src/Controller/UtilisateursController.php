@@ -31,6 +31,7 @@ class UtilisateursController extends AbstractController
     public function show(Utilisateurs $utilisateurs): Response
     {
         return $this->render('utilisateurs/affichage.html.twig', [
+            'id'=>$utilisateurs->getId(),
             'utilisateurs' => $utilisateurs,
         ]);
     }
