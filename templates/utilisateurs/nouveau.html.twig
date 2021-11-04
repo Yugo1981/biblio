@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau utilisateur{% endblock %}
+
+{% block body %}
+    <h1>Nouveeau utilisateur</h1>
+<table class="table">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Photo</th>
+                <th>Date de naissance</th>
+                <th>Login</th>
+                <th>Password</th>
+                <th>Adresse</th>
+                <th>Email</th>
+                <th>Role</th>
+
+
+
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ utilisateurs.noms }}</td>
+                <td>{{ utilisateurs.prenoms }}</td>
+                <td>{{ utilisateurs.photo }}</td>
+                <td>{{ utilisateurs.date }}</td>
+                <td>{{ utilisateurs.login }}</td>
+                <td>{{ utilisateurs.password }}</td>
+                <td>{{ utilisateurs.titre }}</td>
+                <td>{{ utilisateurs.titre }}</td>
+                <td>{{ utilisateurs.titre }}</td>
+                <td>{{ utilisateurs.titre }}</td>
+
+
+            </tr>
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

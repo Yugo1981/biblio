@@ -6,6 +6,7 @@
     <h1>Articles index</h1>
 <table class="table">
         <thead>
+        <td><button><a href="{{ path('article_new') }}">Nouveau</a></button></td>
             <tr>
                 <th>Id</th>
                 <th>Titre</th>
@@ -19,8 +20,6 @@
             </tr>
         </thead>
         <tbody>
-        {# {% include 'menu_article.html.twig' %} #}
-
         {% for articl in article %}
             <tr>
                 <td>{{ articl.id }}</td>

@@ -7,8 +7,13 @@ use App\Entity\Utilisateurs;
 use App\Repository\UtilisateursRepository;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
+use Faker;
 
 /**
  * @Route("/users")
@@ -22,6 +27,39 @@ class UtilisateursController extends AbstractController
     {
         return $this->render('utilisateurs/index.html.twig', [
             'utilisateurs' => $utilisateursRepository->findAll(),
+        ]);
+    }
+
+     /**
+     * @Route("/new", name="utilisateur_new")
+    */
+    public function nouveau(Request $request, EntityManagerInterface $em) : Response
+    {    
+        $faker = Faker\Factory::create('fr_FR');
+
+                $utilisateurs = new Utilisateurs();
+                $nom = ["Follereau","Nwelha","Planiteye","Palakot","Nabi","Khassaowhneh","Ndao","Thuet","Traore","Lopez"];
+                $prenom = ["Fabrice","Paul","Pierre","Jacques","Igor","Valéry","Ange","Rudy","Modou","Moaath"];
+                $photo = ["1","2","3","4","5"];
+                $role = ["Admin","Utilisateur"];
+                shuffle($nom);
+                shuffle($prenom);
+                shuffle($photo);
+                shuffle($role);
+            
+                $utilisateurs->setNoms($nom[0]);
+                $utilisateurs->setPrenoms($prenom[0]);
+                $utilisateurs->setPhoto($photo[0]); 
+                $utilisateurs->setDateNaissance(new \DateTime());
+                $utilisateurs->setLogin("user");
+                $utilisateurs->setPassword("mdp");
+                $utilisateurs->setAdresse($faker->adress);
+                $utilisateurs->setEmail($faker->email);
+                $utilisateurs->setRole($role[0]);
+            $em->persist($utilisateurs);            
+        $em->flush();
+        return $this->render('utilisateurs/nouveau.html.twig', [
+            'utilisateurs' => $utilisateurs,
         ]);
     }
     

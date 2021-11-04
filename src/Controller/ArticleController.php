@@ -29,6 +29,25 @@ class ArticleController extends AbstractController
             'article' => $articleRepository->findAll(),
         ]);
     }
+    
+     /**
+     * @Route("/new", name="article_new")
+    */
+    public function nouveau(Request $request, EntityManagerInterface $em) : Response
+    {    
+                $articles = new Article();
+            
+                $articles->setTitre(" Titre de l'article");
+                $articles->setContenu(" Contenu de l'article");  
+                $articles->setDate(new \DateTime());
+                $articles->setResume(" Resume de l'article");
+                $articles->setImage(" Image de l'article");
+            $em->persist($articles);            
+        $em->flush();
+        return $this->render('article/nouveau.html.twig', [
+            'articles' => $articles,
+        ]);
+    }
 
     /**
      * @Route("/{id}", name="articles_show", methods={"GET"})
@@ -40,4 +59,5 @@ class ArticleController extends AbstractController
             'article' => $article,
         ]);
     }
+
 }

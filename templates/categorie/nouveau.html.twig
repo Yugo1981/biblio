@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvele categorie{% endblock %}
+
+{% block body %}
+    <h1>Nouvelle catégorie</h1>
+<table class="table">
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Resume</th>
+
+
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ categorie.titre }}</td>
+                <td>{{ categorie.resume }}</td>
+            </tr>
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}
