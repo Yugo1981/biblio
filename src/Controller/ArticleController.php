@@ -20,6 +20,39 @@ use Doctrine\ORM\EntityManagerInterface;
  */
 class ArticleController extends AbstractController
 {
+      /**
+     * @Route("/nouvelarticle", name="aarticle.nouvelarticle")
+    */
+        // Ici on Fait une Enregistrement avec une Formulaire
+    
+        public function pageForm(Request $request, EntityManagerInterface $manager)
+    {
+        $articles =new Article(); // Instanciation
+
+        // Creation de mon Formulaire
+        $form = $this->createFormBuilder($articles) 
+                    ->add('Titre')
+                    ->add('Resume')
+                    ->add('Contenu')
+                    //->add('Date')
+                    ->add('Image')
+
+            // Demande le résultat
+            ->getForm();
+
+        // Analyse des Requetes & Traitement des information 
+        $form->handleRequest($request);
+
+            $manager->persist($articles); 
+            $manager->flush();
+       
+        // Redirection du Formulaire vers le TWIG pour l’affichage avec
+        return $this->render('article/new2.html.twig', [
+            'formArticle' => $form->createView()
+        ]);
+    }
+
+
     /**
      * @Route("/", name="articles_index", methods={"GET"})
      */
