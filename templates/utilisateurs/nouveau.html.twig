@@ -26,16 +26,13 @@
             <tr>
                 <td>{{ utilisateurs.noms }}</td>
                 <td>{{ utilisateurs.prenoms }}</td>
-                <td>{{ utilisateurs.photo }}</td>
-                <td>{{ utilisateurs.date }}</td>
+                <td>{{ utilisateurs.photo }}</td> 
+                <td>{{ utilisateurs.datenaissance | date("d/m/Y") }}</td>
                 <td>{{ utilisateurs.login }}</td>
                 <td>{{ utilisateurs.password }}</td>
-                <td>{{ utilisateurs.titre }}</td>
-                <td>{{ utilisateurs.titre }}</td>
-                <td>{{ utilisateurs.titre }}</td>
-                <td>{{ utilisateurs.titre }}</td>
-
-
+                <td>{{ utilisateurs.adresse }}</td>
+                <td>{{ utilisateurs.email }}</td>
+                <td>{{ utilisateurs.role }}</td>
             </tr>
             <tr>
                 <td colspan="5">no records found</td>

@@ -53,7 +53,7 @@ class UtilisateursController extends AbstractController
                 $utilisateurs->setDateNaissance(new \DateTime());
                 $utilisateurs->setLogin("user");
                 $utilisateurs->setPassword("mdp");
-                $utilisateurs->setAdresse($faker->adress);
+                $utilisateurs->setAdresse("10 rue de tartanpion");
                 $utilisateurs->setEmail($faker->email);
                 $utilisateurs->setRole($role[0]);
             $em->persist($utilisateurs);            
