@@ -73,10 +73,10 @@ class ArticleController extends AbstractController
             $entityManager->persist($articleu);
             $entityManager->flush();
 
-            return $this->redirectToRoute('article_index');
+            return $this->redirectToRoute('articles_index');
         }
 
-        return $this->render('article/new.himtl.twig' , [
+        return $this->render('article/new3.html.twig' , [
             'articleu' => $articleu,
             'form' => $form->createView(),
         ]);
