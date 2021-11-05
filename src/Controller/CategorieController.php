@@ -21,6 +21,41 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class CategorieController extends AbstractController
 {
+
+    /**
+     * @Route ("/nouvelcategorie" , name="categorie.nouvelcategorie" , methods={"GET" , "POST"})
+     */
+
+    public function pageForm(Request $request, EntityManagerInterface $manager)
+    {
+        $categorie =new Categorie(); // Instanciation
+
+        // Creation de mon Formulaire
+        $form = $this->createFormBuilder($categorie) 
+                    ->add('Titre')
+                    ->add('Resume')                  
+
+            // Demande le résultat
+            ->getForm();
+
+        // Analyse des Requetes & Traitement des information 
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $manager->persist($categorie); 
+            $manager->flush();
+
+            return $this->redirectToRoute('categorie.nouvelcategorie', 
+            ['id'=>$categorie->getId()]); // Redirection vers la page
+        }
+       
+        // Redirection du Formulaire vers le TWIG pour l’affichage avec
+        return $this->render('categorie/catnew.html.twig', [
+            'formCategorie' => $form->createView()
+        ]);
+    }
+
+
     /**
      * @Route("/", name="categorie")
      */

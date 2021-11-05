@@ -21,7 +21,7 @@ use Doctrine\ORM\EntityManagerInterface;
 class ArticleController extends AbstractController
 {
       /**
-     * @Route("/nouvelarticle", name="aarticle.nouvelarticle")
+     * @Route("/nouvelarticle", name="aarticle.nouvelarticle", methods={"GET", "POST"})
     */
         // Ici on Fait une Enregistrement avec une Formulaire
     
@@ -43,8 +43,13 @@ class ArticleController extends AbstractController
         // Analyse des Requetes & Traitement des information 
         $form->handleRequest($request);
 
+        if ($form->isSubmitted() && $form->isValid()) {
             $manager->persist($articles); 
             $manager->flush();
+
+            return $this->redirectToRoute('aarticle.nouvelarticle', 
+            ['id'=>$articles->getId()]); // Redirection vers la page
+        }
        
         // Redirection du Formulaire vers le TWIG pour l’affichage avec
         return $this->render('article/new2.html.twig', [
