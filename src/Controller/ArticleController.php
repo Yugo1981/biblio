@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Repository\ArticleRepository;
+use App\Form\ArticleType;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -57,6 +58,29 @@ class ArticleController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/newwithformtype" , name="newwithform" , methods={"GET" , "POST"})
+     */
+
+    public function newwithformtype(Request $request) : Response
+    {
+        $articleu = New Article();
+        $form = $this->createForm(ArticleType::class, $articleu);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($articleu);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('article_index');
+        }
+
+        return $this->render('article/new.himtl.twig' , [
+            'articleu' => $articleu,
+            'form' => $form->createView(),
+        ]);
+    }
 
     /**
      * @Route("/", name="articles_index", methods={"GET"})
