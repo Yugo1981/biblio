@@ -31,12 +31,7 @@ class Utilisateurs
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $photo;
-
-    /**
-     * @ORM\Column(type="date")
-     */
-    private $date_naissance;
-
+    
     /**
      * @ORM\Column(type="string", length=255)
      */
@@ -61,6 +56,11 @@ class Utilisateurs
      * @ORM\Column(type="string", length=255)
      */
     private $role;
+
+    /**
+     * @ORM\Column(type="date")
+     */
+    private $date_naissance;
 
     public function getId(): ?int
     {
@@ -101,19 +101,7 @@ class Utilisateurs
         $this->photo = $photo;
 
         return $this;
-    }
-
-    public function getDateNaissance(): ?\DateTimeInterface
-    {
-        return $this->date_naissance;
-    }
-
-    public function setDateNaissance(\DateTimeInterface $date_naissance): self
-    {
-        $this->date_naissance = $date_naissance;
-
-        return $this;
-    }
+    }   
 
     public function getLogin(): ?string
     {
@@ -171,6 +159,18 @@ class Utilisateurs
     public function setRole(string $role): self
     {
         $this->role = $role;
+
+        return $this;
+    }
+
+    public function getDateNaissance(): ?\DateTimeInterface
+    {
+        return $this->date_naissance;
+    }
+
+    public function setDateNaissance(\DateTimeInterface $date_naissance): self
+    {
+        $this->date_naissance = $date_naissance;
 
         return $this;
     }

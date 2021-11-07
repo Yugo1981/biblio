@@ -22,7 +22,7 @@ class UtilisateursController extends AbstractController
 {
 
     /**
-     * @Route("/newform" , name="newform" , methods={"GET" , "POST"})
+     * @Route("/newform" , name="users_newform" , methods={"GET" , "POST"})
      */
 
     public function newformtype(Request $request) : Response

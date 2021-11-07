@@ -57,7 +57,7 @@ class CategorieController extends AbstractController
     }
 
     /**
-     * @Route("/newform" , name="newform" , methods={"GET" , "POST"})
+     * @Route("/newform" , name="cat_newform" , methods={"GET" , "POST"})
      */
 
     public function newformtype(Request $request) : Response

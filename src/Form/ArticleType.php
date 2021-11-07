@@ -12,11 +12,10 @@ class ArticleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('Titre')
-            ->add('Resume')
-            ->add('Contenu')
-            ->add('Image')
-
+            ->add('titre')
+            ->add('resume')
+            ->add('contenu')
+            ->add('image')
         ;        
     }
 
