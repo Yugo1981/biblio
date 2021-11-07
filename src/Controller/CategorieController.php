@@ -60,7 +60,7 @@ class CategorieController extends AbstractController
      * @Route("/newform" , name="newform" , methods={"GET" , "POST"})
      */
 
-    public function newwithformtype(Request $request) : Response
+    public function newformtype(Request $request) : Response
     {
         $category = New Categorie();
         $form = $this->createForm(CategorieType::class, $category);
@@ -71,7 +71,7 @@ class CategorieController extends AbstractController
             $entityManager->persist($category);
             $entityManager->flush();
 
-            return $this->redirectToRoute('categorie_index');
+            return $this->redirectToRoute('categorie');
         }
 
         return $this->render('categorie/new3.html.twig' , [
