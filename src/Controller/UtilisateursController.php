@@ -36,7 +36,7 @@ class UtilisateursController extends AbstractController
             $entityManager->persist($utilisator);
             $entityManager->flush();
 
-            return $this->redirectToRoute('user_index');
+            return $this->redirectToRoute('users_index');
         }
         
         return $this->render('utilisateurs/new3.html.twig' , [
