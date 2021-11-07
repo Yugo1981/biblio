@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use App\Entity\Categorie;
 use App\Repository\CategorieRepository;
+use App\Form\CategorieType;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -55,6 +56,29 @@ class CategorieController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/newform" , name="newform" , methods={"GET" , "POST"})
+     */
+
+    public function newwithformtype(Request $request) : Response
+    {
+        $category = New Categorie();
+        $form = $this->createForm(CategorieType::class, $category);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($category);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('categorie_index');
+        }
+
+        return $this->render('categorie/new3.html.twig' , [
+            'category' => $category,
+            'form' => $form->createView(),
+        ]);
+    }
 
     /**
      * @Route("/", name="categorie")
