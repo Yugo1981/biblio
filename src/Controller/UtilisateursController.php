@@ -3,8 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Utilisateurs;
-
 use App\Repository\UtilisateursRepository;
+use App\Form\UtilisateursType;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,6 +20,31 @@ use Faker;
  */
 class UtilisateursController extends AbstractController
 {
+
+    /**
+     * @Route("/newform" , name="newform" , methods={"GET" , "POST"})
+     */
+
+    public function newformtype(Request $request) : Response
+    {
+        $utilisator = New Utilisateurs();
+        $form = $this->createForm(UtilisateursType::class, $utilisator);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($utilisator);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('user_index');
+        }
+        
+        return $this->render('utilisateurs/new3.html.twig' , [
+            'utilisator' => $utilisator,
+            'form' => $form->createView(),
+        ]);
+    }
+
     /**
      * @Route("/", name="users_index")
      */
