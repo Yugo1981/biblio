@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Locations{% endblock %}
+
+{% block body %}
+    <h1>Locations</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ location.id }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ location.Titre }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ location.date }}</td>
+            </tr>
+            <tr>
+                <th>Categorie</th>
+                <td>{{ location.categorie }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>{{ location.image }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ location.description }}</td>
+            </tr>
+            <tr>
+                <th>Valeur</th>
+                <td>{{ location.valeur }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ location.adresse }}</td>
+            </tr>
+            <tr>
+                <th>Accessibilité</th>
+                <td>{{ location.accessibility }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ location.status }}</td>
+            </tr>
+            <tr>
+                <th>A la une</th>
+                <td>{{ location.alaune }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+{% endblock %}
