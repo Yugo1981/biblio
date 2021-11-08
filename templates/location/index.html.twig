@@ -24,7 +24,7 @@
         {% for locations in location %}
             <tr>
                 <td>{{ locations.id }}</td>
-                <td>{{ locations.date }}</td>
+                <td>{{ locations.date | date("d/m/Y") }}</td>
                 <td>{{ locations.titre }}</td>
                 <td>{{ locations.categorie }}</td>
                 <td>{{ locations.image }}</td>
@@ -33,7 +33,7 @@
                 <td>{{ locations.adresse }}</td>
                 <td>{{ locations.accessibility }}</td>
                 <td>{{ locations.status }}</td>
-                <td>{{ locations.a_la_une }}</td>
+                <td>{{ locations.alaune }}</td>
             </tr>
         {% else %}
             <tr>

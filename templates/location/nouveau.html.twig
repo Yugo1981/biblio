@@ -7,23 +7,30 @@
 <table class="table">
         <thead>
             <tr>
-                <th>Titre</th>
-                <th>Contenu</th>
                 <th>Date</th>
-                <th>Resume</th>
+                <th>Titre</th>
+                <th>Catégorie</th>
                 <th>Image</th>
-
-
-
+                <th>Description</th>
+                <th>Valeur</th>
+                <th>Adresse</th>
+                <th>Accessibilité</th>
+                <th>Status</th>
+                <th>A la une</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td>{{ articles.titre }}</td>
-                <td>{{ articles.contenu }}</td>
-                <td>{{ articles.date| date("d/m/Y") }}</td>
-                <td>{{ articles.resume }}</td>
-                <td>{{ articles.image }}</td>
+                <td>{{ location.date| date("d/m/Y") }}</td>
+                <td>{{ location.Titre }}</td>
+                <td>{{ location.categorie }}</td>
+                <td>{{ location.image }}</td>
+                <td>{{ location.description }}</td>
+                <td>{{ location.valeur }}</td>
+                <td>{{ location.adresse }}</td>
+                <td>{{ location.accessibility }}</td>
+                <td>{{ location.status }}</td>
+                <td>{{ location.alaune }}</td>
             </tr>
             <tr>
                 <td colspan="5">no records found</td>
