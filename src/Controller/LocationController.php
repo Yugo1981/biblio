@@ -20,6 +20,30 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class LocationController extends AbstractController
 {
+     /**
+     * @Route("/newform" , name="location_newform" , methods={"GET" , "POST"})
+     */
+
+    public function newformtype(Request $request) : Response
+    {
+        $locassion = New Location();
+        $form = $this->createForm(LocationType::class, $locassion);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($locassion);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('location_index');
+        }
+        
+        return $this->render('location/new3.html.twig' , [
+            'locassion' => $locassion,
+            'form' => $form->createView(),
+        ]);
+    }
+
     /**
      * @Route("/", name="location_index")
      */
