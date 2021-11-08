@@ -11,16 +11,16 @@ afficher:
     controller: App\ViewController::afficherliste
 
 accueil:
-    path: /accueil
-    controller: App\Controller\HomeController::index
+    path: /biblio/
+    controller: App\Controller\BibliothequeController::index
 
-accueil2:
-    path: /home
-    controller: App\Controller\HomeController::index
+# accueil2:
+#     path: /home
+#     controller: App\Controller\HomeController::index
 
-accueil3:
-    path: /
-    controller: App\Controller\HomeController::index
+# accueil3:
+#     path: /
+#     controller: App\Controller\HomeController::index
 
 apropos:
     path: /home/apropos

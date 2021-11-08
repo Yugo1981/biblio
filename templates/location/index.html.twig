@@ -10,7 +10,7 @@
                 <th>Id</th>
                 <th>Date</th>
                 <th>Titre</th>
-                <th>Catgorie</th>
+                <th>Categorie</th>
                 <th>Image</th>
                 <th>Description</th>
                 <th>Valeur</th>
@@ -21,22 +21,22 @@
             </tr>
         </thead>
         <tbody>
-        {% for location in locations %}
+        {% for locations in location %}
             <tr>
-                <td>{{ location.id }}</td>
-                <td>{{ location.date }}</td>
-                <td>{{ location.titre }}</td>
-                <td>{{ location.categorie }}</td>
-                <td>{{ location.image }}</td>
-                <td>{{ location.description }}</td>
-                <td>{{ location.valeur }}</td>
-                <td>{{ location.adresse }}</td>
-                <td>{{ location.accessibility }}</td>
-                <td>{{ location.status }}</td>
-                <td>{{ location.a_la_une }}</td>
+                <td>{{ locations.id }}</td>
+                <td>{{ locations.date }}</td>
+                <td>{{ locations.titre }}</td>
+                <td>{{ locations.categorie }}</td>
+                <td>{{ locations.image }}</td>
+                <td>{{ locations.description }}</td>
+                <td>{{ locations.valeur }}</td>
+                <td>{{ locations.adresse }}</td>
+                <td>{{ locations.accessibility }}</td>
+                <td>{{ locations.status }}</td>
+                <td>{{ locations.a_la_une }}</td>
             </tr>
         {% else %}
-            {<tr>
+            <tr>
                 <td colspan="5">no records found</td>
             </tr>
         {% endfor %}
