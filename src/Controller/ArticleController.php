@@ -94,7 +94,7 @@ class ArticleController extends AbstractController
     }
 
     /**
-     * @Route("/delete/{id}) , name="delete_article method={"POST"})
+     * @Route("/delete/{id}" , name="delete_article")
      */
 
     public function delete(Request $request, Article $articles, EntityManagerInterface $manager, ArticleRepository $repo, $id)

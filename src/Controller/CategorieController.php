@@ -87,7 +87,19 @@ class CategorieController extends AbstractController
         return $this->render('categorie/catedit.html.twig', [
             'formCategorie' => $form->createView()
         ]);
-    }   
+    }
+    
+     /**
+     * @Route("/delete/{id}" , name="delete_categorie")
+     */
+
+    public function delete(Request $request, Categorie $categorie, EntityManagerInterface $manager)
+    {
+        $manager->remove($categorie);
+        $manager->flush();
+
+        return $this->redirectToRoute('categorie');
+    }
 
     /**
      * @Route("/newform" , name="cat_newform" , methods={"GET" , "POST"})

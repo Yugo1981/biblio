@@ -30,7 +30,7 @@
                 <td>{{ articl.resume }}</td>
                 <td><button><a href="{{ path('articles_show' , {id: articl.id}) }}">Cliquez</a></button></td>
                 <td><button><a href="{{ path('edit_article' , {id: articl.id}) }}">Editer</a></button></td>
-
+                <td><button><a href="{{ path('delete_article' , {id: articl.id}) }}">Supression</a></button></td>
                 {# <td>{{ articl.contenu }}</td>
                 <td>{{ articl.date| date("d/m/Y") }}</td>
                 <td>{{ articl.image }}</td> #}
