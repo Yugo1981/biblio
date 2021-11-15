@@ -94,6 +94,18 @@ class ArticleController extends AbstractController
     }
 
     /**
+     * @Route("/delete/{id}) , name="delete_article method={"POST"})
+     */
+
+    public function delete(Request $request, Article $articles, EntityManagerInterface $manager, ArticleRepository $repo, $id)
+    {
+        $manager->remove($articles);
+        $manager->flush();
+
+        return $this->redirectToRoute('articles_index');
+    }
+
+    /**
      * @Route("/newformtype" , name="newwithform" , methods={"GET" , "POST"})
      */
 
@@ -136,7 +148,7 @@ class ArticleController extends AbstractController
             
                 $articles->setTitre(" Titre de l'article");
                 $articles->setContenu(" Contenu de l'article");  
-                $articles->setDate(new \DateTime());
+                // $articles->setDate(new \DateTime());
                 $articles->setResume(" Resume de l'article");
                 $articles->setImage(" Image de l'article");
             $em->persist($articles);            
