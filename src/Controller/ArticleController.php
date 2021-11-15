@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Entity\Article;
 use App\Repository\ArticleRepository;
 use App\Form\ArticleType;
-
+use Categorie;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -54,6 +54,41 @@ class ArticleController extends AbstractController
        
         // Redirection du Formulaire vers le TWIG pour l’affichage avec
         return $this->render('article/new2.html.twig', [
+            'formArticle' => $form->createView()
+        ]);
+    }
+    
+    /**
+     * @Route("/edit/{id}", name="edit_article", methods={"GET" , "POST"})
+     */
+    public function edition(Request $request, Article $articles, EntityManagerInterface $manager)
+    {
+        // $articles =new Article(); // Instanciation
+        // Creation de mon Formulaire
+        $form = $this->createFormBuilder($articles) 
+                    ->add('Titre')
+                    ->add('Resume')
+                    ->add('Contenu')
+                    ->add('Image')
+
+            // Demande le résultat
+            ->getForm();
+
+        // Analyse des Requetes & Traitement des information 
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+           // $manager->persist($articles); 
+            $manager->flush();
+
+            return $this->redirectToRoute(
+                'articles_show',
+                ['id' => $articles->getId()]
+            ); // Redirection vers la page
+        }
+       
+        // Redirection du Formulaire vers le TWIG pour l’affichage avec
+        return $this->render('article/edit.html.twig', [
             'formArticle' => $form->createView()
         ]);
     }

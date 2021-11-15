@@ -13,6 +13,8 @@
                 <th>Id</th>
                 <th>Titre</th>
                 <th>Resume</th>
+                <th>Action</th>
+                <th>Edition</th>
             </tr>
         </thead>
         <tbody>
@@ -22,6 +24,8 @@
                 <td>{{ categori.titre }}</td>
                 <td>{{ categori.resume }}</td>
                 <td><button><a href="{{ path('categories_show' , {id: categori.id}) }}">Cliquez</a></button></td>
+                <td><button><a href="{{ path('edit_categorie' , {id: categori.id}) }}">Editer</a></button></td>
+
 
             </tr>
         {% else %}

@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h1>Formulaire pour une catégorie</h1>
+
+{{ form_start(formCategorie) }}
+Titre :    {{ form_widget(formCategorie.Titre) }}<br>
+Résumé :    {{ form_widget(formCategorie.Resume) }} <br>
+  <button type="submit" class="btn btn-success">Envoyer</button>
+
+{{ form_end(formCategorie) }}
+{% endblock %}

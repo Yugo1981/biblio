@@ -29,12 +29,12 @@ class CategorieController extends AbstractController
 
     public function pageForm(Request $request, EntityManagerInterface $manager)
     {
-        $categorie =new Categorie(); // Instanciation
+        $categorie = new Categorie(); // Instanciation
 
         // Creation de mon Formulaire
-        $form = $this->createFormBuilder($categorie) 
-                    ->add('Titre')
-                    ->add('Resume')                  
+        $form = $this->createFormBuilder($categorie)
+            ->add('Titre')
+            ->add('Resume')
 
             // Demande le résultat
             ->getForm();
@@ -43,26 +43,59 @@ class CategorieController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $manager->persist($categorie); 
+            $manager->persist($categorie);
             $manager->flush();
 
-            return $this->redirectToRoute('categorie.nouvelcategorie', 
-            ['id'=>$categorie->getId()]); // Redirection vers la page
+            return $this->redirectToRoute(
+                'categorie.nouvelcategorie',
+                ['id' => $categorie->getId()]
+            ); // Redirection vers la page
         }
-       
+
         // Redirection du Formulaire vers le TWIG pour l’affichage avec
         return $this->render('categorie/catnew.html.twig', [
             'formCategorie' => $form->createView()
         ]);
     }
+    
+    /**
+     * @Route("/edit/{id}", name="edit_categorie", methods={"GET" , "POST"})
+     */
+
+    public function edition(Request $request, Categorie $categorie, EntityManagerInterface $manager)
+    {
+        // Creation de mon Formulaire
+        $form = $this->createFormBuilder($categorie) 
+                    ->add('Titre')
+                    ->add('Resume')
+            // Demande le résultat
+            ->getForm();
+
+        // Analyse des Requetes & Traitement des information 
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+           // $manager->persist($articles); 
+            $manager->flush();
+
+            return $this->redirectToRoute(
+                'categories_show',
+                ['id' => $categorie->getId()]
+            ); // Redirection vers la page
+        }      
+        // Redirection du Formulaire vers le TWIG pour l’affichage avec
+        return $this->render('categorie/catedit.html.twig', [
+            'formCategorie' => $form->createView()
+        ]);
+    }   
 
     /**
      * @Route("/newform" , name="cat_newform" , methods={"GET" , "POST"})
      */
 
-    public function newformtype(Request $request) : Response
+    public function newformtype(Request $request): Response
     {
-        $category = New Categorie();
+        $category = new Categorie();
         $form = $this->createForm(CategorieType::class, $category);
         $form->handleRequest($request);
 
@@ -74,7 +107,7 @@ class CategorieController extends AbstractController
             return $this->redirectToRoute('categorie');
         }
 
-        return $this->render('categorie/new3.html.twig' , [
+        return $this->render('categorie/new3.html.twig', [
             'category' => $category,
             'form' => $form->createView(),
         ]);
@@ -94,20 +127,20 @@ class CategorieController extends AbstractController
      * @Route("/new", name="categorie_new")
      */
 
-    public function nouveau(Request $request, EntityManagerInterface $em) : Response
-    {    
-                $categorie = new Categorie();
-            
-                $categorie->setTitre(" Categorie ");
-                $categorie->setResume(" Resume de la catégorie");
-            $em->persist($categorie);            
+    public function nouveau(Request $request, EntityManagerInterface $em): Response
+    {
+        $categorie = new Categorie();
+
+        $categorie->setTitre(" Categorie ");
+        $categorie->setResume(" Resume de la catégorie");
+        $em->persist($categorie);
         $em->flush();
         return $this->render('categorie/nouveau.html.twig', [
             'categorie' => $categorie,
         ]);
     }
 
-      /**
+    /**
      * @Route("/{id}", name="categories_show", methods={"GET"})
      */
     public function show(Categorie $categorie): Response
