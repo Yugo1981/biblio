@@ -46,6 +46,44 @@ class UtilisateursController extends AbstractController
     }
 
     /**
+     * @Route("/edit/{id}", name="edit_utilisateur", methods={"GET" , "POST"})
+     */
+
+    public function edition(Request $request, Utilisateurs $utilisateurs, EntityManagerInterface $manager)
+    {
+        // Creation de mon Formulaire
+        $form = $this->createFormBuilder($utilisateurs) 
+                ->add('noms')
+                ->add('prenoms')
+                ->add('photo')
+                ->add('date_naissance')
+                ->add('login')
+                ->add('password')
+                ->add('adresse')
+                ->add('email')
+                ->add('role')
+            // Demande le résultat
+            ->getForm();
+
+        // Analyse des Requetes & Traitement des information 
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+           // $manager->persist($articles); 
+            $manager->flush();
+
+            return $this->redirectToRoute(
+                'utilisateurs_show',
+                ['id' => $utilisateurs->getId()]
+            ); // Redirection vers la page
+        }      
+        // Redirection du Formulaire vers le TWIG pour l’affichage avec
+        return $this->render('utilisateurs/utilisateursedit.html.twig', [
+            'formUtilisateurs' => $form->createView()
+        ]);
+    }
+
+    /**
      * @Route("/", name="users_index")
      */
     public function index(UtilisateursRepository $utilisateursRepository): Response
