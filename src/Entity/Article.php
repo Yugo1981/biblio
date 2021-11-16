@@ -4,6 +4,8 @@ namespace App\Entity;
 //use App\Repository\ArticleRepository;
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Faker;
 
 /**
@@ -20,17 +22,26 @@ class Article
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotBlank(
+     *      message = "T'es un gros nul")
      */
     private $titre;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotNull(     
+     *     message = "Le contenu '{{ value }}' ne peut pas être vide")
      */
     private $contenu;
 
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+    * @Assert\Length(
+     *      min = 2,
+     *      max = 30,
+     *      minMessage = "Le résumé doit avoir au moins {{ limit }} charactères ",
+     *      maxMessage = "Le résumé ne peut pas avoir plus de {{ limit }} charatères ")
      */
     private $resume;
 

@@ -2,12 +2,6 @@
 
 {% block body %}
 <h1>Formulaire pour une catégorie</h1>
-
-{{ form_start(form) }}
-Titre :    {{ form_widget(form.Titre) }}<br>
-Résumé :    {{ form_widget(form.Resume) }} <br>
-  <button type="submit" class="btn btn-success">Envoyer</button>
-
-{{ form_end(form) }}
+{{ form(form)}}
 {% endblock %}
 

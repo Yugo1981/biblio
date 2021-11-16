@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\CategorieRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=CategorieRepository::class)
@@ -19,11 +21,21 @@ class Categorie
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 40,
+     *      minMessage = "La catégorie doit avoir au moins {{ limit }} charactères ",
+     *      maxMessage = "La catégorie ne peut pas avoir plus de {{ limit }} charatères ")
      */
     private $titre;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 30,
+     *      minMessage = "Le résumé doit avoir au moins {{ limit }} charactères ",
+     *      maxMessage = "Le résumé ne peut pas avoir plus de {{ limit }} charatères ")
      */
     private $resume;
 
