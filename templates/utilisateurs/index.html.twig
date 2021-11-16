@@ -36,6 +36,8 @@
                 <td>{{ utilisateur.email }}</td>
                 <td>{{ utilisateur.role }}</td>
                 <td><button><a href="{{ path('utilisateurs_show' , {id: utilisateur.id}) }}">Cliquez</a></button></td>
+                <td><button><a href="{{ path('edit_utilisateur' , {id: utilisateur.id}) }}">Editer</a></button></td>
+                <td><button><a href="{{ path('delete_utilisateurs' , {id: utilisateur.id}) }}">Suppression</a></button></td>
             </tr>
         {% else %}
             {<tr>

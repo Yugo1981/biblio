@@ -83,6 +83,18 @@ class UtilisateursController extends AbstractController
         ]);
     }
 
+     /**
+     * @Route("/delete/{id}" , name="delete_utilisateurs")
+     */
+
+    public function delete(Request $request, Utilisateurs $utilisateurs, EntityManagerInterface $manager)
+    {
+        $manager->remove($utilisateurs);
+        $manager->flush();
+
+        return $this->redirectToRoute('users_index');
+    }
+
     /**
      * @Route("/", name="users_index")
      */
