@@ -6,16 +6,32 @@ use App\Entity\Article;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class ArticleType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('titre')
-            ->add('resume')
-            ->add('contenu')
+            ->add('titre',
+             TextType::class,[
+                 'label' =>'Titre' ,
+                 'required' => 'true'
+             ])
+            ->add('resume',
+             TextType::class,[
+                 'label' =>'Resume' ,
+                 'required' => 'true'
+             ])
+            ->add('contenu',
+             TextType::class,[
+                 'label' =>'Contenu' ,
+                 'required' => 'true'
+             ])
             ->add('image')
+
+            ->add('Envoyer', SubmitType::class)
         ;        
     }
 

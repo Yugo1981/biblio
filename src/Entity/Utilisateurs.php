@@ -25,17 +25,18 @@ class Utilisateurs
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\Length(
-     *      min = 2,
+     *      min = 10,
      *      max = 50,
      *      minMessage = "Le nom doit avoir au moins {{ limit }} charactères ",
-     *      maxMessage = "Le nom ne peut pas avoir plus de {{ limit }} charatères ")
+     *      maxMessage = "Le nom ne peut pas avoir plus de {{ limit }} charatères "
+     * )
      */
     private $noms;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\Length(
-     *      min = 2,
+     *      min = 3,
      *      max = 50,
      *      minMessage = "Le prénom doit avoir au moins {{ limit }} charactères ",
      *      maxMessage = "Le prénom ne peut pas avoir avoir plus de {{ limit }} charactères ")

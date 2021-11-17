@@ -3,18 +3,7 @@
 {% block body %}
 <h1>Formulaire pour un utilisateur</h1>
 
-{{ form_start(form) }}
-Nom :    {{ form_widget(form.noms) }}<br>
-Prénom :    {{ form_widget(form.prenoms) }}<br>
-Photo :    {{ form_widget(form.photo) }}<br>
-Date de naissance :    {{ form_widget(form.date_naissance) }}<br>
-Login :    {{ form_widget(form.login) }}<br>
-Password :    {{ form_widget(form.password) }}<br>
-Adresse :    {{ form_widget(form.adresse) }}<br>
-Email :    {{ form_widget(form.email) }}<br>
-Rôle :    {{ form_widget(form.role) }}<br>
-  <button type="submit" class="btn btn-success">Envoyer</button>
+{{  form(form)}}
 
-    {{ form_end(form) }}
 {% endblock %}
 

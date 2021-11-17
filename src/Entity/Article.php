@@ -6,7 +6,6 @@ use App\Repository\ArticleRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Faker;
 
 /**
  * @ORM\Entity(repositoryClass=ArticleRepository::class)
