@@ -29,7 +29,11 @@ class ArticleType extends AbstractType
                  'label' =>'Contenu' ,
                  'required' => 'true'
              ])
-            ->add('image')
+            ->add('image' ,
+             TextType::class,[
+                 'label' =>'Image' ,
+                 'required' => 'true'
+             ])
 
             ->add('Envoyer', SubmitType::class)
         ;        

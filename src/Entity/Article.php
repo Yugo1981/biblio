@@ -20,14 +20,14 @@ class Article
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(
-     *      message = "T'es un gros nul")
+     *      message = "Veuillez ne pas rentrer que des espaces")
      */
     private $titre;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255)
      * @Assert\NotNull(     
      *     message = "Le contenu '{{ value }}' ne peut pas être vide")
      */
@@ -35,7 +35,7 @@ class Article
 
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255)
     * @Assert\Length(
      *      min = 2,
      *      max = 30,

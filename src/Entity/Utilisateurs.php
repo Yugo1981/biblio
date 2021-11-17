@@ -25,7 +25,7 @@ class Utilisateurs
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\Length(
-     *      min = 10,
+     *      min = 2,
      *      max = 50,
      *      minMessage = "Le nom doit avoir au moins {{ limit }} charactères ",
      *      maxMessage = "Le nom ne peut pas avoir plus de {{ limit }} charatères "
@@ -36,7 +36,7 @@ class Utilisateurs
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\Length(
-     *      min = 3,
+     *      min = 2,
      *      max = 50,
      *      minMessage = "Le prénom doit avoir au moins {{ limit }} charactères ",
      *      maxMessage = "Le prénom ne peut pas avoir avoir plus de {{ limit }} charactères ")
@@ -66,7 +66,7 @@ class Utilisateurs
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Email(
+     * @Assert\email(
      *      message = "Le mail  '{{ value }}' n'est pas valide")
      * @Assert\NotBlank()
      */
