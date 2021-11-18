@@ -66,7 +66,7 @@ class Utilisateurs
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\email(
+     * @Assert\Email(
      *      message = "Le mail  '{{ value }}' n'est pas valide")
      * @Assert\NotBlank()
      */

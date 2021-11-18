@@ -3,9 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Entity\Categorie;
 use App\Repository\ArticleRepository;
 use App\Form\ArticleType;
-use Categorie;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -151,6 +151,7 @@ class ArticleController extends AbstractController
                 // $articles->setDate(new \DateTime());
                 $articles->setResume(" Resume de l'article");
                 $articles->setImage(" Image de l'article");
+                $articles->setCategorie($categorie);
             $em->persist($articles);            
         $em->flush();
         return $this->render('article/nouveau.html.twig', [

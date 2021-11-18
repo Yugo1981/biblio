@@ -3,6 +3,8 @@
 namespace App\Entity;
 //use App\Repository\ArticleRepository;
 use App\Repository\ArticleRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -45,10 +47,12 @@ class Article
     private $resume;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\ManyToOne(targetEntity=Categorie::class, inversedBy="article")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $image;
-       
+    private $categorie;
+
+   
     public function getId(): ?int
     {
         return $this->id;
@@ -102,4 +106,16 @@ class Article
 
         return $this;
     }
+
+    public function getCategorie(): ?Categorie
+    {
+        return $this->categorie;
+    }
+
+    public function setCategorie(?Categorie $categorie): self
+    {
+        $this->categorie = $categorie;
+
+        return $this;
+    }   
 }
