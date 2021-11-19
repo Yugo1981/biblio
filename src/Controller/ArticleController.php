@@ -70,6 +70,7 @@ class ArticleController extends AbstractController
                     ->add('Resume')
                     ->add('Contenu')
                     ->add('Image')
+                    
 
             // Demande le résultat
             ->getForm();
@@ -151,7 +152,6 @@ class ArticleController extends AbstractController
                 // $articles->setDate(new \DateTime());
                 $articles->setResume(" Resume de l'article");
                 $articles->setImage(" Image de l'article");
-                //$articles->setCategorie($categorie,"Hey ho");
             $em->persist($articles);            
         $em->flush();
         return $this->render('article/nouveau.html.twig', [

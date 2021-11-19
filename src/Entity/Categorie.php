@@ -46,6 +46,11 @@ class Categorie
      */
     private $article;
 
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
     public function __construct()
     {
         $this->article = new ArrayCollection();
