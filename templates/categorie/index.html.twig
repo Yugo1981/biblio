@@ -13,6 +13,7 @@
                 <th>Id</th>
                 <th>Titre</th>
                 <th>Resume</th>
+                <th>Article</th>
                 <th>Action</th>
                 <th>Edition</th>
             </tr>
@@ -20,9 +21,10 @@
         <tbody>
         {% for categori in categorie %}
             <tr>
-                <td>{{ categori.id }}</td>
-                <td>{{ categori.titre }}</td>
-                <td>{{ categori.resume }}</td>
+                <td>{{ categorie.id }}</td>
+                <td>{{ categorie.titre }}</td>
+                <td>{{ categorie.resume }}</td>
+                <td>{{ categorie.article }}</td>
                 <td><button><a href="{{ path('categories_show' , {id: categori.id}) }}">Cliquez</a></button></td>
                 <td><button><a href="{{ path('edit_categorie' , {id: categori.id}) }}">Editer</a></button></td>
                 <td><button><a href="{{ path('delete_categorie' , {id: categori.id}) }}">Suppression</a></button></td>

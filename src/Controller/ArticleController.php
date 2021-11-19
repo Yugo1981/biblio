@@ -151,7 +151,7 @@ class ArticleController extends AbstractController
                 // $articles->setDate(new \DateTime());
                 $articles->setResume(" Resume de l'article");
                 $articles->setImage(" Image de l'article");
-                $articles->setCategorie($categorie);
+                //$articles->setCategorie($categorie,"Hey ho");
             $em->persist($articles);            
         $em->flush();
         return $this->render('article/nouveau.html.twig', [

@@ -23,6 +23,16 @@ use Doctrine\ORM\EntityManagerInterface;
 class CategorieController extends AbstractController
 {
 
+        /**
+     * @Route("/", name="categorie")
+     */
+    public function index(CategorieRepository $categorieRepository): Response
+    {
+        return $this->render('categorie/index.html.twig', [
+            'categorie' => $categorieRepository->findAll(),
+        ]);
+    }
+    
     /**
      * @Route ("/nouvelcategorie" , name="categorie.nouvelcategorie" , methods={"GET" , "POST"})
      */
@@ -125,15 +135,6 @@ class CategorieController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/", name="categorie")
-     */
-    public function index(CategorieRepository $categorieRepository): Response
-    {
-        return $this->render('categorie/index.html.twig', [
-            'categorie' => $categorieRepository->findAll(),
-        ]);
-    }
 
     /**
      * @Route("/new", name="categorie_new")

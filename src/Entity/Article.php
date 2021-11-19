@@ -52,6 +52,11 @@ class Article
      */
     private $categorie;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $image;
+
    
     public function getId(): ?int
     {
