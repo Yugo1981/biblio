@@ -13,6 +13,7 @@
                 <th>Id</th>
                 <th>Titre</th>
                 <th>Resume</th>
+                <th>Categorie</th>
                 <th>Action</th>
                 <th>Edition</th>
                 {# <th>Contenu</th>
@@ -28,6 +29,7 @@
                 <td>{{ articl.id }}</td>
                 <td>{{ articl.titre }}</td>
                 <td>{{ articl.resume }}</td>
+                <td>{{ articl.categorie.titre }}</td>
                 <td><button><a href="{{ path('articles_show' , {id: articl.id}) }}">Cliquez</a></button></td>
                 <td><button><a href="{{ path('edit_article' , {id: articl.id}) }}">Editer</a></button></td>
                 <td><button><a href="{{ path('delete_article' , {id: articl.id}) }}">Supression</a></button></td>
