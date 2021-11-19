@@ -34,7 +34,12 @@ class ArticleType extends AbstractType
                  'label' =>'Image' ,
                  'required' => 'true'
              ])
-
+            
+             ->add('categorie' ,
+             CategorieType::class,[
+                 'label' =>'Catégorie' ,
+                 'required' => 'true'
+             ])
             ->add('Envoyer', SubmitType::class)
         ;        
     }

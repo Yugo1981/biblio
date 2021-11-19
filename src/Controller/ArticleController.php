@@ -70,7 +70,7 @@ class ArticleController extends AbstractController
                     ->add('Resume')
                     ->add('Contenu')
                     ->add('Image')
-                    
+                    ->add('Categorie')                  
 
             // Demande le résultat
             ->getForm();
