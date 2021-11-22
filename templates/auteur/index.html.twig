@@ -2,7 +2,6 @@
 
 {% block body %}
 <h1>Auteur</h1>
-{# <td><button><a href="{{ path('auteur_new') }}">Nouveau</a></button></td> #}
 <td><button><a href="{{ path('newwithform') }}">Nouveau Formulaire</a></button></td>
 
 <table class="table">
@@ -14,6 +13,7 @@
                 <th>Mail</th>
                 <th>Action</th>
                 <th>Edition</th>
+                <th>Supprimer</th>
             </tr>
         </thead>
         <tbody>
@@ -25,11 +25,11 @@
                 <td>{{ auteurs.mail }}</td>
                 <td><button><a href="{{ path('auteur_show' , {id: auteurs.id}) }}">Cliquez</a></button></td>
                 <td><button><a href="{{ path('edit_auteur' , {id: auteurs.id}) }}">Editer</a></button></td>
-                {# <td><button><a href="{{ path('delete_article' , {id: articl.id}) }}">Supression</a></button></td> #}
+                <td><button><a href="{{ path('delete_auteur' , {id: auteurs.id}) }}">Supression</a></button></td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="5">Aucun enregistrement</td>
             </tr>
         {% endfor %}
         </tbody>

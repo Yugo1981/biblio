@@ -20,43 +20,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
      */
 
 class AuteurController extends AbstractController
-{
-    
-    // /**
-    //  * @Route("/new" , name"auteur_new")
-    //  */
-
-    // public function pageForm(Request $request, EntityManagerInterface $manager)
-    // {
-    //     $auteur =new Auteur(); // Instanciation
-
-    //     // Creation de mon Formulaire
-    //     $form = $this->createFormBuilder($auteur) 
-    //                 ->add('Noms')
-    //                 ->add('Prénoms')
-    //                 ->add('Mail')
-
-    //         // Demande le résultat
-    //         ->getForm();
-
-    //     // Analyse des Requetes & Traitement des information 
-    //     $form->handleRequest($request);
-
-    //     if ($form->isSubmitted() && $form->isValid()) {
-    //         $manager->persist($auteur); 
-    //         $manager->flush();
-
-    //         return $this->redirectToRoute('auteur_index', 
-    //         ['id'=>$auteur->getId()]); // Redirection vers la page
-    //     }
-       
-    //     // Redirection du Formulaire vers le TWIG pour l’affichage avec
-    //     return $this->render('auteur/new2.html.twig', [
-    //         'formAuteur' => $form->createView()
-    //     ]);
-    // }
-
-
+{    
       /**
      * @Route("/newformtype" , name="newwithform" , methods={"GET" , "POST"})
      */
@@ -113,6 +77,18 @@ class AuteurController extends AbstractController
         return $this->render('auteur/edit.html.twig', [
             'formAuteur' => $form->createView()
         ]);
+    }
+
+     /**
+     * @Route("/delete/{id}" , name="delete_auteur")
+     */
+
+    public function delete(Request $request, Auteur $auteur, EntityManagerInterface $manager, AuteurRepository $repo, $id)
+    {
+        $manager->remove($auteur);
+        $manager->flush();
+
+        return $this->redirectToRoute('auteur_index');
     }
 
 
