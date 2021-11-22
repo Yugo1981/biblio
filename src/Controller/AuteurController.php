@@ -79,6 +79,41 @@ class AuteurController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    /**
+     * @Route("/edit/{id}", name="edit_auteur", methods={"GET" , "POST"})
+     */
+    public function edition(Request $request, Auteur $auteur, EntityManagerInterface $manager)
+    {
+        // Creation de mon Formulaire
+        $form = $this->createFormBuilder($auteur) 
+                    ->add('Nom')
+                    ->add('Prénom')
+                    ->add('Mail')
+
+            // Demande le résultat
+            ->getForm();
+
+        // Analyse des Requetes & Traitement des information 
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+           // $manager->persist($articles); 
+            $manager->flush();
+
+            return $this->redirectToRoute(
+                'auteur_show',
+                ['id' => $auteur->getId()]
+            ); // Redirection vers la page
+        }
+       
+        // Redirection du Formulaire vers le TWIG pour l’affichage avec
+        return $this->render('auteur/edit.html.twig', [
+            'formAuteur' => $form->createView()
+        ]);
+    }
+
+
     /**
      * @Route("/", name="auteur_index")
      */
