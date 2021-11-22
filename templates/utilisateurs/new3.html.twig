@@ -1,9 +1,8 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+<td><button><a href="{{ path('users_index') }}">Retour</a></button></td>
 <h1>Formulaire pour un utilisateur</h1>
-
 {{  form(form)}}
-
 {% endblock %}
 
