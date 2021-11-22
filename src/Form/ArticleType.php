@@ -3,12 +3,14 @@
 namespace App\Form;
 
 use App\Entity\Article;
+use App\Entity\Categorie;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 
 class ArticleType extends AbstractType
@@ -37,7 +39,18 @@ class ArticleType extends AbstractType
                  'required' => 'true'
              ])
             
-             ->add('categorie')
+             ->add('categorie', EntityType::class, [
+                // Label du champ    
+                'label'  => 'Categorie',
+                'placeholder' => 'Sélectionner',
+                // looks for choices from this entity
+                'class' => Categorie::class,
+                // Sur quelle propriete je fais le choix
+                'choice_label' => 'titre',
+                // used to render a select box, check boxes or radios
+                // 'multiple' => true,
+                //'expanded' => true,)
+             ])
             ->add('Envoyer', SubmitType::class)
         ;        
     }

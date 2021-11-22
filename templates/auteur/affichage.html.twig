@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Auteur{% endblock %}
+
+{% block body %}
+<td><button><a href="{{ path('auteur_index') }}">Retour</a></button></td>
+    <h1>Auteur</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ auteur.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ auteur.noms }}</td>
+            </tr>
+            <tr>
+                <th>Prénom</th>
+                <td>{{ auteur.prenoms }}</td>
+            </tr>
+            <tr>
+                <th>Mail</th>
+                <td>{{ auteur.mail }}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}
