@@ -10,7 +10,7 @@
             <tr>
                 <th>Id</th>
                 <th>Nom</th>
-                <th>Prénom</th>
+                <th>Prenom</th>
                 <th>Mail</th>
                 <th>Action</th>
                 <th>Edition</th>
@@ -24,7 +24,7 @@
                 <td>{{ auteurs.prenoms }}</td>
                 <td>{{ auteurs.mail }}</td>
                 <td><button><a href="{{ path('auteur_show' , {id: auteurs.id}) }}">Cliquez</a></button></td>
-                {# <td><button><a href="{{ path('edit_article' , {id: articl.id}) }}">Editer</a></button></td> #}
+                <td><button><a href="{{ path('edit_auteur' , {id: auteurs.id}) }}">Editer</a></button></td>
                 {# <td><button><a href="{{ path('delete_article' , {id: articl.id}) }}">Supression</a></button></td> #}
             </tr>
         {% else %}
@@ -32,8 +32,6 @@
                 <td colspan="5">no records found</td>
             </tr>
         {% endfor %}
-
         </tbody>
     </table>
-
 {% endblock %}

@@ -3,16 +3,17 @@
 namespace App\Controller;
 
 use App\Entity\Auteur;
-use App\Repository\AuteurRepository;
 use App\Form\AuteurType;
-
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\Request;
-
 use Doctrine\ORM\EntityManager;
+
+use App\Repository\AuteurRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
      * @Route("/auteur")
@@ -87,9 +88,10 @@ class AuteurController extends AbstractController
     {
         // Creation de mon Formulaire
         $form = $this->createFormBuilder($auteur) 
-                    ->add('Nom')
-                    ->add('Prénom')
+                    ->add('Noms')
+                    ->add('Prenoms')
                     ->add('Mail')
+                    ->add('Envoyer', SubmitType::class)
 
             // Demande le résultat
             ->getForm();
