@@ -8,19 +8,16 @@
 <table class="table">
         <thead>
         <td><button><a href="{{ path('article_new') }}">Nouveau</a></button></td>
-        <td><button><a href="{{ path('newwithform') }}">Nouveau Formulaire</a></button></td>
+        <td><button><a href="{{ path('newform') }}">Nouveau Formulaire</a></button></td>
             <tr>
                 <th>Id</th>
                 <th>Titre</th>
                 <th>Resume</th>
                 <th>Categorie</th>
+                <th>Auteur</th>
                 <th>Action</th>
                 <th>Edition</th>
-                {# <th>Contenu</th>
-                <th>Date</th>
-                <th>Image</th> #}
-
-
+                <th>Suppression</th>               
             </tr>
         </thead>
         <tbody>
@@ -30,6 +27,7 @@
                 <td>{{ articl.titre }}</td>
                 <td>{{ articl.resume }}</td>
                 <td>{{ articl.categorie.titre }}</td>
+                <td>{{ articl.auteur.noms }}</td>
                 <td><button><a href="{{ path('articles_show' , {id: articl.id}) }}">Cliquez</a></button></td>
                 <td><button><a href="{{ path('edit_article' , {id: articl.id}) }}">Editer</a></button></td>
                 <td><button><a href="{{ path('delete_article' , {id: articl.id}) }}">Supression</a></button></td>

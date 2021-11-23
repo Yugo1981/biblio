@@ -70,7 +70,8 @@ class ArticleController extends AbstractController
                     ->add('Resume')
                     ->add('Contenu')
                     ->add('Image')
-                    ->add('Categorie')                  
+                    ->add('Categorie')
+                    ->add('Noms')                  
 
             // Demande le résultat
             ->getForm();
@@ -107,7 +108,7 @@ class ArticleController extends AbstractController
     }
 
     /**
-     * @Route("/newformtype" , name="newwithform" , methods={"GET" , "POST"})
+     * @Route("/newformtype" , name="newform" , methods={"GET" , "POST"})
      */
 
     public function newwithformtype(Request $request) : Response

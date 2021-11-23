@@ -57,6 +57,12 @@ class Article
      */
     private $image;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Auteur::class, inversedBy="articles")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $auteur;
+
    
     public function getId(): ?int
     {
@@ -120,6 +126,18 @@ class Article
     public function setCategorie(?Categorie $categorie): self
     {
         $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    public function getAuteur(): ?Auteur
+    {
+        return $this->auteur;
+    }
+
+    public function setAuteur(?Auteur $auteur): self
+    {
+        $this->auteur = $auteur;
 
         return $this;
     }   

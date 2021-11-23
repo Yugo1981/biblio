@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Article;
 use App\Entity\Categorie;
+use App\Entity\Auteur;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -51,6 +52,20 @@ class ArticleType extends AbstractType
                 // 'multiple' => true,
                 //'expanded' => true,)
              ])
+            
+             ->add('auteur', EntityType::class, [
+                // Label du champ    
+                'label'  => 'Auteur',
+                'placeholder' => 'Sélectionner',
+                // looks for choices from this entity
+                'class' => Auteur::class,
+                // Sur quelle propriete je fais le choix
+                'choice_label' => 'noms',
+                // used to render a select box, check boxes or radios
+                // 'multiple' => true,
+                //'expanded' => true,)
+             ])
+            
             ->add('Envoyer', SubmitType::class)
         ;        
     }
