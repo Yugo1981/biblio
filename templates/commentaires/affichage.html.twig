@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<td><button><a href="{{ path('commentaires_index') }}">Retour</a></button></td>
+    <h1>Commentaires</h1>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ commentaires.id }}</td>
+            </tr>
+            <tr>
+                <th>Auteur</th>
+                <td>{{ commentaires.Auteur }}</td>
+            </tr>
+            <tr>
+                <th>Mail</th>
+                <td>{{ commentaires.Mail }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ commentaires.date | date()}}</td>
+            </tr>
+            <tr>
+                <th>Commentaire</th>
+                <td>{{ commentaires.commentaire }}</td>
+            </tr>          
+        </tbody>
+    </table>
+{% endblock %}

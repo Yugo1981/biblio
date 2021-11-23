@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <button class="button"><a href="{{ path('administration_biblio') }}">Administration</a></button>
+    <h1>Commentaire index</h1>
+<table class="table">
+        <thead>
+        <td><button><a href="{{ path('newcom') }}">Nouveau Formulaire</a></button></td>
+            <tr>
+                <th>Id</th>
+                <th>Auteur</th>
+                <th>Mail</th>
+                <th>Date</th>
+                <th>Commentaire</th>
+                <th>Action</th>
+                <th>Edition</th>
+                <th>Suppression</th>               
+            </tr>
+        </thead>
+        <tbody>
+        {% for commentaire in commentaires %}
+            <tr>
+                <td>{{ commentaire.id }}</td>
+                <td>{{ commentaire.Auteur }}</td>
+                <td>{{ commentaire.Mail }}</td>
+                <td>{{ commentaire.date | date()}}</td>
+                <td>{{ commentaire.commentaire }}</td>
+                <td><button><a href="{{ path('commentaires_show' , {id: commentaire.id}) }}">Cliquez</a></button></td>
+                <td><button><a href="{{ path('edit_commentaires' , {id: commentaire.id}) }}">Editer</a></button></td>
+                <td><button><a href="{{ path('commentaires_delete' , {id: commentaire.id}) }}">Supression</a></button></td>               #}
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">Pas d'enregistrement trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
