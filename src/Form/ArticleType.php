@@ -22,21 +22,25 @@ class ArticleType extends AbstractType
             ->add('titre',
              TextType::class,[
                  'label' =>'Titre' ,
+                 'attr' => ['placeholder' => 'Titre'],
                  'required' => 'true'
              ])
             ->add('resume',
              TextType::class,[
                  'label' =>'Resume' ,
+                 'attr' => ['placeholder' => 'Résumé'],
                  'required' => 'true'
              ])
             ->add('contenu',
              TextType::class,[
                  'label' =>'Contenu' ,
+                 'attr' => ['placeholder' => 'Contenu'],
                  'required' => 'true'
              ])
             ->add('image' ,
              TextType::class,[
                  'label' =>'Image' ,
+                 'attr' => ['placeholder' => 'Photo'],
                  'required' => 'true'
              ])
             

@@ -71,7 +71,7 @@ class ArticleController extends AbstractController
                     ->add('Contenu')
                     ->add('Image')
                     ->add('Categorie')
-                    ->add('Noms')                  
+                    ->add('Auteur')
 
             // Demande le résultat
             ->getForm();
