@@ -2,24 +2,25 @@
 
 namespace App\Controller;
 
+use App\Entity\Auteur;
 use App\Entity\Article;
 use App\Entity\Categorie;
-use App\Entity\Auteur;
-use App\Repository\ArticleRepository;
 use App\Form\ArticleType;
+use App\Entity\Commentaires;
+use Doctrine\ORM\EntityManager;
+use App\Repository\ArticleRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
-use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
 
@@ -123,6 +124,19 @@ class ArticleController extends AbstractController
                         // 'multiple' => true,
                         //'expanded' => true,)
                         ])
+
+                        ->add('commentaire', EntityType::class, [
+                            // Label du champ    
+                            'label'  => 'Commentaire',
+                            'placeholder' => 'Sélectionner',
+                            // looks for choices from this entity
+                            'class' => Commentaires::class,
+                            // Sur quelle propriete je fais le choix
+                            'choice_label' => 'Commentaire',
+                            // used to render a select box, check boxes or radios
+                            // 'multiple' => true,
+                            //'expanded' => true,)
+                         ])
        
                         ->add('Envoyer', SubmitType::class)
 

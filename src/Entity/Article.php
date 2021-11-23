@@ -63,6 +63,18 @@ class Article
      */
     private $auteur;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Commentaires::class, inversedBy="articles")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $commentaire;
+
+    
+    public function __construct()
+    {
+        $this->commentaires = new ArrayCollection();
+    }
+
    
     public function getId(): ?int
     {
@@ -140,5 +152,17 @@ class Article
         $this->auteur = $auteur;
 
         return $this;
-    }   
+    }
+
+    public function getCommentaire(): ?Commentaires
+    {
+        return $this->commentaire;
+    }
+
+    public function setCommentaire(?Commentaires $commentaire): self
+    {
+        $this->commentaire = $commentaire;
+
+        return $this;
+    }    
 }
