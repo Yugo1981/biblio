@@ -4,6 +4,7 @@ namespace App\Controller;
 
 
 use App\Entity\Commentaires;
+use App\Entity\Article;
 use App\Repository\CommentairesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
