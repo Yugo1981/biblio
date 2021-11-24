@@ -218,33 +218,33 @@ class ArticleController extends AbstractController
     /**
      * @Route("/{id}", name="articles_show", methods={"GET"})
      */
-    public function show(Article $article, Request $request): Response
+    public function show(Article $article, Request $request, EntityManager $manager): Response
     {    
-        return $this->render('article/affichage.html.twig', [
-            'id'=>$article->getId(),
-            'auteur' => $article,
-        ]);    
-    //     $commentaires = new Commentaires();
-    //     $commentairesForm = $this->createForm(CommentairesType::class, $commentaires);
+        // return $this->render('article/affichage.html.twig', [
+        //     'id'=>$article->getId(),
+        //     'article' => $article,
+        // ]);    
+        $commentaires = new Commentaires();
+        $commentairesForm = $this->createForm(CommentairesType::class, $commentaires);
 
-    //     $commentairesForm->handleRequest($request);
+        $commentairesForm->handleRequest($request);
 
-    //     if($commentairesForm->isSubmitted() && $commentairesForm->isValid()) {
-    //         $commentaires->setDate(new \DateTime())
-    //                     ->setArticle($article);
-    //         $manager->persist($commentaires);
+        if($commentairesForm->isSubmitted() && $commentairesForm->isValid()) {
+            $commentaires->setDate(new \DateTime())
+                        ->setArticle($article);
+            $manager->persist($commentaires);
 
-    //         $manager->flush();
+            $manager->flush();
 
-    //         return $this->redirectToRoute('articles_show' , ['id' => $article->getId()
-    //     ]);
-    // }
+            return $this->redirectToRoute('articles_show' , ['id' => $article->getId()
+        ]);
+    }
     
 
-    //     return $this->render('article/affichage.html.twig', [
-    //         // 'id'=>$article->getId(),
-    //         'article' => $article,
-    //         'commentairesForm' => $commentairesForm->createView()
-    //     ]);
+        return $this->render('article/affichage.html.twig', [
+            // 'id'=>$article->getId(),
+            'article' => $article,
+            'commentairesForm' => $commentairesForm->createView()
+        ]);
     }
 }
