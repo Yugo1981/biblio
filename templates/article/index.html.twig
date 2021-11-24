@@ -15,7 +15,6 @@
                 <th>Resume</th>
                 <th>Categorie</th>
                 <th>Auteur</th>
-                <th>Commentaire</th>
                 <th>Action</th>
                 <th>Edition</th>
                 <th>Suppression</th>               
@@ -29,7 +28,6 @@
                 <td>{{ articl.resume }}</td>
                 <td>{{ articl.categorie.titre }}</td>
                 <td>{{ articl.auteur.noms }}</td>
-                <td>{{ articl.commentaire.commentaire }}</td>
                 <td><button><a href="{{ path('articles_show' , {id: articl.id}) }}">Cliquez</a></button></td>
                 <td><button><a href="{{ path('edit_article' , {id: articl.id}) }}">Editer</a></button></td>
                 <td><button><a href="{{ path('delete_article' , {id: articl.id}) }}">Supression</a></button></td>             

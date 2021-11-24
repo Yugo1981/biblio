@@ -64,11 +64,11 @@ class Article
     private $auteur;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Commentaires::class, inversedBy="articles")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\OneToMany(targetEntity=Commentaires::class, mappedBy="article", orphanRemoval=true)
      */
-    private $commentaire;
+    private $commentaires;
 
+    
     
     public function __construct()
     {
@@ -154,15 +154,33 @@ class Article
         return $this;
     }
 
-    public function getCommentaire(): ?Commentaires
+    /**
+     * @return Collection|Commentaires[]
+     */
+    public function getCommentaires(): Collection
     {
-        return $this->commentaire;
+        return $this->commentaires;
     }
 
-    public function setCommentaire(?Commentaires $commentaire): self
+    public function addCommentaire(Commentaires $commentaire): self
     {
-        $this->commentaire = $commentaire;
+        if (!$this->commentaires->contains($commentaire)) {
+            $this->commentaires[] = $commentaire;
+            $commentaire->setArticle($this);
+        }
 
         return $this;
-    }    
+    }
+
+    public function removeCommentaire(Commentaires $commentaire): self
+    {
+        if ($this->commentaires->removeElement($commentaire)) {
+            // set the owning side to null (unless already changed)
+            if ($commentaire->getArticle() === $this) {
+                $commentaire->setArticle(null);
+            }
+        }
+
+        return $this;
+    }   
 }

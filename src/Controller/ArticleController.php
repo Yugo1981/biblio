@@ -7,6 +7,7 @@ use App\Entity\Article;
 use App\Entity\Categorie;
 use App\Form\ArticleType;
 use App\Entity\Commentaires;
+use App\Form\CommentairesType;
 use Doctrine\ORM\EntityManager;
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -125,19 +126,6 @@ class ArticleController extends AbstractController
                         //'expanded' => true,)
                         ])
 
-                        ->add('commentaire', EntityType::class, [
-                            // Label du champ    
-                            'label'  => 'Commentaire',
-                            'placeholder' => 'Sélectionner',
-                            // looks for choices from this entity
-                            'class' => Commentaires::class,
-                            // Sur quelle propriete je fais le choix
-                            'choice_label' => 'Commentaire',
-                            // used to render a select box, check boxes or radios
-                            // 'multiple' => true,
-                            //'expanded' => true,)
-                         ])
-       
                         ->add('Envoyer', SubmitType::class)
 
             // Demande le résultat
@@ -230,11 +218,33 @@ class ArticleController extends AbstractController
     /**
      * @Route("/{id}", name="articles_show", methods={"GET"})
      */
-    public function show(Article $article): Response
-    {
+    public function show(Article $article, Request $request): Response
+    {    
         return $this->render('article/affichage.html.twig', [
             'id'=>$article->getId(),
-            'article' => $article,
-        ]);
+            'auteur' => $article,
+        ]);    
+    //     $commentaires = new Commentaires();
+    //     $commentairesForm = $this->createForm(CommentairesType::class, $commentaires);
+
+    //     $commentairesForm->handleRequest($request);
+
+    //     if($commentairesForm->isSubmitted() && $commentairesForm->isValid()) {
+    //         $commentaires->setDate(new \DateTime())
+    //                     ->setArticle($article);
+    //         $manager->persist($commentaires);
+
+    //         $manager->flush();
+
+    //         return $this->redirectToRoute('articles_show' , ['id' => $article->getId()
+    //     ]);
+    // }
+    
+
+    //     return $this->render('article/affichage.html.twig', [
+    //         // 'id'=>$article->getId(),
+    //         'article' => $article,
+    //         'commentairesForm' => $commentairesForm->createView()
+    //     ]);
     }
 }

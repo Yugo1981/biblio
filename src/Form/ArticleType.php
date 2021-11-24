@@ -70,19 +70,6 @@ class ArticleType extends AbstractType
                 // 'multiple' => true,
                 //'expanded' => true,)
              ])
-
-             ->add('commentaire', EntityType::class, [
-                // Label du champ    
-                'label'  => 'Commentaire',
-                'placeholder' => 'Sélectionner',
-                // looks for choices from this entity
-                'class' => Commentaires::class,
-                // Sur quelle propriete je fais le choix
-                'choice_label' => 'Commentaire',
-                // used to render a select box, check boxes or radios
-                // 'multiple' => true,
-                //'expanded' => true,)
-             ])
             
             ->add('Envoyer', SubmitType::class)
         ;        

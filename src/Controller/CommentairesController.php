@@ -59,7 +59,19 @@ class CommentairesController extends AbstractController
                         'label' =>'Commentaire' ,
                         'attr' => ['placeholder' => 'Commentaire'],
                         'required' => 'true'
-                    ])         
+                    ])
+                    ->add('article', EntityType::class, [
+                        // Label du champ    
+                        'label'  => 'Article',
+                        'placeholder' => 'Sélectionner',
+                        // looks for choices from this entity
+                        'class' => Article::class,
+                        // Sur quelle propriete je fais le choix
+                        'choice_label' => 'titre',
+                        // used to render a select box, check boxes or radios
+                        // 'multiple' => true,
+                        //'expanded' => true,)
+                     ])     
                 
                 ->add('Envoyer', SubmitType::class)
 

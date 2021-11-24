@@ -40,16 +40,11 @@ class Commentaires
     private $commentaire;
 
     /**
-     * @ORM\OneToMany(targetEntity=Article::class, mappedBy="commentaire")
+     * @ORM\ManyToOne(targetEntity=Article::class, inversedBy="commentaires")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $articles;
-
-    public function __construct()
-    {
-        $this->articles = new ArrayCollection();
-    }
-
-    
+    private $article;
+       
     public function getId(): ?int
     {
         return $this->id;
@@ -108,33 +103,15 @@ class Commentaires
         return $this->commentaire;
     }
 
-    /**
-     * @return Collection|Article[]
-     */
-    public function getArticles(): Collection
+    public function getArticle(): ?Article
     {
-        return $this->articles;
+        return $this->article;
     }
 
-    public function addArticle(Article $article): self
+    public function setArticle(?Article $article): self
     {
-        if (!$this->articles->contains($article)) {
-            $this->articles[] = $article;
-            $article->setCommentaire($this);
-        }
+        $this->article = $article;
 
         return $this;
-    }
-
-    public function removeArticle(Article $article): self
-    {
-        if ($this->articles->removeElement($article)) {
-            // set the owning side to null (unless already changed)
-            if ($article->getCommentaire() === $this) {
-                $article->setCommentaire(null);
-            }
-        }
-
-        return $this;
-    }
+    }  
 }
