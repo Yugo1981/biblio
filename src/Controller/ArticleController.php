@@ -218,7 +218,7 @@ class ArticleController extends AbstractController
     /**
      * @Route("/{id}", name="articles_show", methods={"GET"})
      */
-    public function show(Article $article, Request $request, EntityManager $manager): Response
+    public function show(Article $article, Request $request, EntityManagerInterface $manager): Response
     {    
         // return $this->render('article/affichage.html.twig', [
         //     'id'=>$article->getId(),
