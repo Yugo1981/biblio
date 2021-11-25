@@ -34,11 +34,10 @@
             </tr>
             <tr>
                 <th>Commentaire</th>
-                {# <td>{{ article.commentaires.commentaire }}</td>            #}
-            </tr><br><br>
+
 
                 <!-- Affichage des Commentaires -->
-{#
+
         <div>
             <hr size="4" color="blue">
                 {% for commentaire in article.commentaires %}
@@ -48,7 +47,7 @@
                                 {{ commentaire.auteur }} (<small> {{ commentaire.date | date('d/m/Y ') }}</small>)
                             </div>
                             <div class="col">
-                                {{ commentaire.contenu |raw }}
+                                {{ commentaire.commentaire |raw }}
                             </div>
                             <br>
                         </div>
@@ -57,7 +56,7 @@
         </div>
 
    <!-- Affichage du Formulaire de Commentaire -->
-
+{#
 <div>
     <p class="bg-primary text-white">Ajouter votre commentaire  </p>
                          {{include('commentaires/_form.html.twig') }} #}

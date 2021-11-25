@@ -19,8 +19,11 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
@@ -220,26 +223,68 @@ class ArticleController extends AbstractController
      */
     public function show(Article $article, Request $request, EntityManagerInterface $manager): Response
     {    
+        $commentaire = new Commentaires(); // Instanciation
 
-        /*$commentaires = new Commentaires();
-        $commentairesForm = $this->createForm(CommentairesType::class, $commentaires);
+        // Creation de mon Formulaire
+        $form = $this->createFormBuilder(CommentairesType::class, $commentaire)
+                ->add('Auteur',
+                    TextType::class,[
+                        'label' =>'Auteur' ,
+                        'attr' => ['placeholder' => 'Auteur'],
+                        'required' => 'true'
+                    ])
 
-        $commentairesForm->handleRequest($request);
+                ->add('Mail',
+                    TextType::class,[
+                        'label' =>'Mail' ,
+                        'attr' => ['placeholder' => 'Mail'],
+                        'required' => 'true'
+                    ])
+                ->add('date',
+                    DateTimeType::class,[
+                        'label' =>'Date' ,
+                        'attr' => ['placeholder' => 'Date'],
+                        'required' => 'true'
+                    ])
+                ->add('commentaire' ,
+                    TextareaType::class,[
+                        'label' =>'Commentaire' ,
+                        'attr' => ['placeholder' => 'Commentaire'],
+                        'required' => 'true'
+                    ])                
 
-        if($commentairesForm->isSubmitted() && $commentairesForm->isValid()) {
-            $commentaires->setDate(new \DateTime())
-                        ->setArticle($article);
-            $manager->persist($commentaires);
+            // Demande le résultat
+            ->getForm();
 
+        // Analyse des Requetes & Traitement des information 
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $manager->persist($commentaire);
+            $article->addCommentaire($commentaire);            
             $manager->flush();
+        }
 
-            return $this->redirectToRoute('articles_show' , ['id' => $article->getId()
-        ]);
-    }
-    */
+        // $commentaires = new Commentaires();
+        // $commentairesForm = $this->createForm(CommentairesType::class, $commentaires);
+
+        // $commentairesForm->handleRequest($request);
+
+        // if($commentairesForm->isSubmitted() && $commentairesForm->isValid()) {
+        //     $commentaires->setDate(new \DateTime())
+        //                 ->setArticle($article);
+        //     $manager->persist($commentaires);
+
+        //     $manager->flush();
+
+    //         return $this->redirectToRoute('articles_show' , ['id' => $article->getId()
+    //     ]);
+    // }
+    
         return $this->render('article/affichage.html.twig', [
             // 'id'=>$article->getId(),
             'article' => $article,
+            'form' => $form->createView()
             //'commentairesForm' => $commentairesForm->createView()
         ]);
     }
