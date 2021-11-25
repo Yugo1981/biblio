@@ -256,8 +256,8 @@ class ArticleController extends AbstractController
         return $this->render('article/affichage.html.twig', [
             // 'id'=>$article->getId(),
             'article' => $article,
-            // 'form' => $form->createView()
-            'commentairesForm' => $commentairesForm->createView()
+            'form' => $form->createView()
+            // 'commentairesForm' => $commentairesForm->createView()
         ]);
     }
 }
