@@ -1,5 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block body %}
 <h1>Nouveau commentaire</h1>
-{{ form(formCommentaire) }}
+    {{ include('commentaires/_form.html.twig') }}
+        <a href="{{ path('commentaires_index') }}">Retour</a>
 {% endblock %}
