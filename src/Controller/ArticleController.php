@@ -226,35 +226,7 @@ class ArticleController extends AbstractController
         $commentaire = new Commentaires(); // Instanciation
 
         // Creation de mon Formulaire
-        $form = $this->createFormBuilder(CommentairesType::class, $commentaire)
-                ->add('Auteur',
-                    TextType::class,[
-                        'label' =>'Auteur' ,
-                        'attr' => ['placeholder' => 'Auteur'],
-                        'required' => 'true'
-                    ])
-
-                ->add('Mail',
-                    TextType::class,[
-                        'label' =>'Mail' ,
-                        'attr' => ['placeholder' => 'Mail'],
-                        'required' => 'true'
-                    ])
-                ->add('date',
-                    DateTimeType::class,[
-                        'label' =>'Date' ,
-                        'attr' => ['placeholder' => 'Date'],
-                        'required' => 'true'
-                    ])
-                ->add('commentaire' ,
-                    TextareaType::class,[
-                        'label' =>'Commentaire' ,
-                        'attr' => ['placeholder' => 'Commentaire'],
-                        'required' => 'true'
-                    ])                
-
-            // Demande le résultat
-            ->getForm();
+        $form = $this->createForm(CommentairesType::class, $commentaire);    
 
         // Analyse des Requetes & Traitement des information 
         $form->handleRequest($request);
@@ -265,27 +237,27 @@ class ArticleController extends AbstractController
             $manager->flush();
         }
 
-        // $commentaires = new Commentaires();
-        // $commentairesForm = $this->createForm(CommentairesType::class, $commentaires);
+        $commentaires = new Commentaires();
+        $commentairesForm = $this->createForm(CommentairesType::class, $commentaires);
 
-        // $commentairesForm->handleRequest($request);
+        $commentairesForm->handleRequest($request);
 
-        // if($commentairesForm->isSubmitted() && $commentairesForm->isValid()) {
-        //     $commentaires->setDate(new \DateTime())
-        //                 ->setArticle($article);
-        //     $manager->persist($commentaires);
+        if($commentairesForm->isSubmitted() && $commentairesForm->isValid()) {
+            $commentaires->setDate(new \DateTime())
+                        ->setArticle($article);
+            $manager->persist($commentaires);
 
-        //     $manager->flush();
+            $manager->flush();
 
-    //         return $this->redirectToRoute('articles_show' , ['id' => $article->getId()
-    //     ]);
-    // }
+            return $this->redirectToRoute('articles_show' , ['id' => $article->getId()
+        ]);
+    }
     
         return $this->render('article/affichage.html.twig', [
             // 'id'=>$article->getId(),
             'article' => $article,
-            'form' => $form->createView()
-            //'commentairesForm' => $commentairesForm->createView()
+            // 'form' => $form->createView()
+            'commentairesForm' => $commentairesForm->createView()
         ]);
     }
 }
