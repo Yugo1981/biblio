@@ -38,7 +38,7 @@
             </tr><br><br>
 
                 <!-- Affichage des Commentaires -->
-
+{#
         <div>
             <hr size="4" color="blue">
                 {% for commentaire in article.commentaires %}
@@ -60,14 +60,14 @@
 
 <div>
     <p class="bg-primary text-white">Ajouter votre commentaire  </p>
-                         {{include('commentaires/_form.html.twig') }}
+                         {{include('commentaires/_form.html.twig') }} #}
 
 </div> 
-    <a href="{{ path('article_index') }}">Liste des Atricles </a> <br><br>
+    <a href="{{ path('articles_index') }}">Liste des Atricles </a> <br><br>
 
-    <a href="{{ path('article_edit', {'id': article.id}) }}">Editer</a> <br><br>
+    <a href="#">Editer</a> <br><br>
 
-    {{ include('article/_delete_form.html.twig') }}
+    {#{ include('article/_delete_form.html.twig') }#}
 </div>
         </tbody>
     </table>

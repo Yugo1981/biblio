@@ -220,11 +220,8 @@ class ArticleController extends AbstractController
      */
     public function show(Article $article, Request $request, EntityManagerInterface $manager): Response
     {    
-        // return $this->render('article/affichage.html.twig', [
-        //     'id'=>$article->getId(),
-        //     'article' => $article,
-        // ]);    
-        $commentaires = new Commentaires();
+
+        /*$commentaires = new Commentaires();
         $commentairesForm = $this->createForm(CommentairesType::class, $commentaires);
 
         $commentairesForm->handleRequest($request);
@@ -239,12 +236,11 @@ class ArticleController extends AbstractController
             return $this->redirectToRoute('articles_show' , ['id' => $article->getId()
         ]);
     }
-    
-
+    */
         return $this->render('article/affichage.html.twig', [
             // 'id'=>$article->getId(),
             'article' => $article,
-            'commentairesForm' => $commentairesForm->createView()
+            //'commentairesForm' => $commentairesForm->createView()
         ]);
     }
 }

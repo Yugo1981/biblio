@@ -94,7 +94,7 @@ class CommentairesController extends AbstractController
 
         // Redirection du Formulaire vers le TWIG pour l’affichage avec
         return $this->render('commentaires/comnew.html.twig', [
-            'formCommentaire' => $form->createView()
+            'form' => $form->createView()
         ]);
     }
 
@@ -150,7 +150,7 @@ class CommentairesController extends AbstractController
        
         // Redirection du Formulaire vers le TWIG pour l’affichage avec
         return $this->render('commentaires/edit.html.twig', [
-            'formCommentaires' => $form->createView()
+            'form' => $form->createView()
         ]);
     }
 
