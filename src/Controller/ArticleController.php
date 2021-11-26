@@ -219,7 +219,7 @@ class ArticleController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="articles_show", methods={"GET"})
+     * @Route("/{id}", name="articles_show", methods={"GET" , "POST"})
      */
     public function show(Article $article, Request $request, EntityManagerInterface $manager): Response
     {    
