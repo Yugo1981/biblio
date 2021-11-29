@@ -4,8 +4,11 @@ namespace App\Entity;
 
 use App\Repository\UtilisateursRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Security\User\UserLoaderInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\UserInterface;
+
 
 
 /**
@@ -13,7 +16,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @UniqueEntity("email")
  * @UniqueEntity("login")
  */
-class Utilisateurs
+class Utilisateurs implements UserInterface
 {
     /**
      * @ORM\Id
@@ -73,9 +76,9 @@ class Utilisateurs
     private $email;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="json")
      */
-    private $role;
+    private $role = [];
 
     /**
      * @ORM\Column(type="date")
@@ -135,17 +138,17 @@ class Utilisateurs
         return $this;
     }
 
-    public function getPassword(): ?string
-    {
-        return $this->password;
-    }
+    // public function getPassword(): ?string
+    // {
+    //     return $this->password;
+    // }
 
-    public function setPassword(string $password): self
-    {
-        $this->password = $password;
+    // public function setPassword(string $password): self
+    // {
+    //     $this->password = $password;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
     public function getAdresse(): ?string
     {
@@ -171,17 +174,17 @@ class Utilisateurs
         return $this;
     }
 
-    public function getRole(): ?string
-    {
-        return $this->role;
-    }
+    // public function getRole(): ?string
+    // {
+    //     return $this->role;
+    // }
 
-    public function setRole(string $role): self
-    {
-        $this->role = $role;
+    // public function setRole(string $role): self
+    // {
+    //     $this->role = $role;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
     public function getDateNaissance(): ?\DateTimeInterface
     {
@@ -191,6 +194,88 @@ class Utilisateurs
     public function setDateNaissance(\DateTimeInterface $date_naissance): self
     {
         $this->date_naissance = $date_naissance;
+
+        return $this;
+    }
+
+      /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUserIdentifier(): ?int
+    {
+        return $this->id;
+    }
+
+     /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUsername(): string
+    {
+        return (string) $this->email;
+    }
+
+     /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+
+      /**
+     * @see UserInterface
+     */
+    public function getPassword(): string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+      /**
+     * Returning a salt is only needed, if you are not using a modern
+     * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
+     *
+     * @see UserInterface
+     */
+    public function getSalt(): ?string
+    {
+        return null;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
+    }
+
+    public function setUsername(string $email): self
+    {
+        $this->email = $email;
 
         return $this;
     }
