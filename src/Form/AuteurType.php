@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
 
 class AuteurType extends AbstractType
@@ -31,6 +32,12 @@ class AuteurType extends AbstractType
             ->add('mail',
             EmailType::class,[
                 'label' => 'Email' ,
+                'required' => 'true'
+            ])
+
+            ->add('password' ,
+            PasswordType::class,[
+                'label' => 'Mot de passe' ,
                 'required' => 'true'
             ])
 

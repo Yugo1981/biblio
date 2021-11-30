@@ -54,7 +54,7 @@ class AuteurController extends AbstractController
 
         return $this->render('auteur/new3.html.twig' , [
             'auteur' => $auteur,
-            'form' => $form->createView(),
+            'formAuteur' => $form->createView(),
         ]);
     }
 
