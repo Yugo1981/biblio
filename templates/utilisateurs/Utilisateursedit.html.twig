@@ -2,18 +2,5 @@
 
 {% block body %}
 <h1>Formulaire pour un utilisateur</h1>
-
-{{ form_start(formUtilisateurs) }}
-Nom :               {{ form_widget(formUtilisateurs.noms) }}<br>
-Prénom :            {{ form_widget(formUtilisateurs.prenoms) }} <br>
-Photo :             {{ form_widget(formUtilisateurs.photo) }}<br>
-Date de naissance : {{ form_widget(formUtilisateurs.date_naissance) }}<br>
-Login :             {{ form_widget(formUtilisateurs.login) }}<br>
-Password :          {{ form_widget(formUtilisateurs.password) }}<br>
-Adresse :           {{ form_widget(formUtilisateurs.adresse) }}<br>
-Email :             {{ form_widget(formUtilisateurs.email) }}<br>
-Rôle :              {{ form_widget(formUtilisateurs.role) }}<br>
-  <button type="submit" class="btn btn-success">Envoyer</button>
-
-{{ form_end(formUtilisateurs) }}
+{{ form(formUtilisateurs) }}
 {% endblock %}

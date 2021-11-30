@@ -14,12 +14,12 @@
                 <th>Nom</th>
                 <th>Prenom</th>
                 <th>Photo</th>
-                {# <th>Date naissance</th> #}
+                <th>Date naissance</th>
                 <th>Login</th>
                 <th>Password</th>
                 <th>Adresse</th>
                 <th>Email</th>
-                <th>Role</th>
+                {# <th>Role</th> #}
             </tr>
         </thead>
         <tbody>
@@ -29,12 +29,14 @@
                 <td>{{ utilisateur.noms }}</td>
                 <td>{{ utilisateur.prenoms }}</td>
                 <td>{{ utilisateur.photo }}</td>
-                {# <td>{{ utilisateur.datenaissance }}</td> #}
+                <td>{{ utilisateur.datenaissance | date("d/m/Y")}}</td>
                 <td>{{ utilisateur.login }}</td>
                 <td>{{ utilisateur.password }}</td>
                 <td>{{ utilisateur.adresse }}</td>
                 <td>{{ utilisateur.email }}</td>
-                <td>{{ utilisateur.role }}</td>
+        {# {% for role in roles %}    
+                <td>{{ utilisateur.roles }}</td>
+        {% endfor %} #}
                 <td><button><a href="{{ path('utilisateurs_show' , {id: utilisateur.id}) }}">Cliquez</a></button></td>
                 <td><button><a href="{{ path('edit_utilisateur' , {id: utilisateur.id}) }}">Editer</a></button></td>
                 <td><button><a href="{{ path('delete_utilisateurs' , {id: utilisateur.id}) }}">Suppression</a></button></td>

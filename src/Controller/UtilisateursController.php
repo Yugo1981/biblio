@@ -2,18 +2,19 @@
 
 namespace App\Controller;
 
+use Faker;
 use App\Entity\Utilisateurs;
-use App\Repository\UtilisateursRepository;
 use App\Form\UtilisateursType;
-
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
-use Faker;
+use App\Repository\UtilisateursRepository;
+use Symfony\Component\HttpFoundation\Request;
+
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/users")
@@ -61,7 +62,8 @@ class UtilisateursController extends AbstractController
                 ->add('password')
                 ->add('adresse')
                 ->add('email')
-                ->add('role')
+                // ->add('roles')
+                ->add('Envoyer', SubmitType::class)
             // Demande le résultat
             ->getForm();
 
