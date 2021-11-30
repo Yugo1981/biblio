@@ -138,19 +138,7 @@ class Utilisateurs implements UserInterface
 
         return $this;
     }
-
-    // public function getPassword(): ?string
-    // {
-    //     return $this->password;
-    // }
-
-    // public function setPassword(string $password): self
-    // {
-    //     $this->password = $password;
-
-    //     return $this;
-    // }
-
+    
     public function getAdresse(): ?string
     {
         return $this->adresse;
@@ -174,18 +162,6 @@ class Utilisateurs implements UserInterface
 
         return $this;
     }
-
-    // public function getRole(): ?string
-    // {
-    //     return $this->role;
-    // }
-
-    // public function setRole(string $role): self
-    // {
-    //     $this->role = $role;
-
-    //     return $this;
-    // }
 
     public function getDateNaissance(): ?\DateTimeInterface
     {

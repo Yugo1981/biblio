@@ -2,6 +2,10 @@ security:
     encoders:
         App\Entity\Utilisateurs:
             algorithm: auto
+        
+        App\Entity\Auteur:
+            algorithm: auto
+
 
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
@@ -10,6 +14,11 @@ security:
             entity:
                 class: App\Entity\Utilisateurs
                 property: email
+        
+        app_auteur_provider:
+            entity:
+                class: App\Entity\Auteur
+                property: mail
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/

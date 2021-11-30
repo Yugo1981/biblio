@@ -4,16 +4,20 @@ namespace App\Controller;
 
 use App\Entity\Auteur;
 use App\Form\AuteurType;
-use Doctrine\ORM\EntityManager;
-
 use App\Repository\AuteurRepository;
+
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
+
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
 
 /**
      * @Route("/auteur")
@@ -25,16 +29,25 @@ class AuteurController extends AbstractController
      * @Route("/newformtype" , name="newwithform" , methods={"GET" , "POST"})
      */
 
-    public function newwithformtype(Request $request) : Response
+    public function newwithformtype(Request $request, UserPasswordEncoderInterface $encoder) : Response
     {
         $auteur = New Auteur();
         $form = $this->createForm(AuteurType::class, $auteur);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // encode the plain password
+            $auteur->setPassword(
+            $encoder->encodePassword(
+                    $auteur,
+                    $form->get('password')->getData()
+                )
+            );
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($auteur);
             $entityManager->flush();
+            // do anything else you need here, like send an email
 
             return $this->redirectToRoute('auteur_index');
         }
