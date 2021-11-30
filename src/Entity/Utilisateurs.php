@@ -8,6 +8,7 @@ use Symfony\Bridge\Doctrine\Security\User\UserLoaderInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 
 
@@ -78,7 +79,7 @@ class Utilisateurs implements UserInterface
     /**
      * @ORM\Column(type="json")
      */
-    private $role = [];
+    private $roles = [];
 
     /**
      * @ORM\Column(type="date")
@@ -279,4 +280,9 @@ class Utilisateurs implements UserInterface
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return $this->roles;
+    }  
 }

@@ -55,15 +55,15 @@ class UtilisateursType extends AbstractType
                 'label' => 'Email' ,
                 'required' => 'true'
             ])
-            ->add('role' ,
-            ChoiceType::class,[
-                'label' => 'Rôle' ,
-                'choices' => [
-                    'Utilisateur' => 'Utilisateur',
-                    'Admin' => 'Admin'
-                ] ,
-                'required' => 'true'
-            ])
+            // ->add('roles' ,
+            // ChoiceType::class,[
+            //     'label' => 'Rôle' ,
+            //     'choices' => [
+            //         'Utilisateur' => 'Utilisateur',
+            //         'Admin' => 'Admin'
+            //     ] ,
+            //     'required' => 'true'
+            // ])
             ->add("Envoyer",SubmitType::class)
         ;
     }
