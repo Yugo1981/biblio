@@ -37,12 +37,13 @@ class AuteurController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             // encode the plain password
-            $auteur->setPassword(
-            $encoder->encodePassword(
-                    $auteur,
-                    $form->get('password')->getData()
-                )
-            );
+            // $auteur->setPassword(
+            // $encoder->encodePassword(
+            //         $auteur,
+            //         $form->get('password')->getData()
+            //     )
+            // );
+            $passwordHashed = $encoder->encodePassword($auteur,$auteur->getPassword()); 
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($auteur);
