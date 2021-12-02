@@ -70,9 +70,8 @@ class UtilisateursController extends AbstractController
                     'Utilisateur' => 'ROLE_USER',
                     'Admin' => 'ROLE_ADMIN'
                 ] ,
-                  'multiple' => true,
-                  'expanded' => true,
-                'required' => 'true'
+                'multiple' => true,
+                'expanded' => true,
             ])       
 
                 ->add('Envoyer', SubmitType::class)
@@ -90,28 +89,7 @@ class UtilisateursController extends AbstractController
                  'utilisateurs_show',
                  ['id' => $utilisateurs->getId()]
              ); // Redirection vers la page
-         }
-
-        //test
-        // if ($form->isSubmitted() && $form->isValid()) {
-        //    // $manager->persist($utilisateurs); 
-        //     $manager->flush();           
-        // }
-        
-        // $user = new Utilisateurs();
-        // $userForm = $this->createForm(UtilisateursType::class,$user);
-        
-        // $userForm->handleRequest($request);
-        // if($userForm->isSubmitted() && $userForm->isValid()) {
-        //     $user->setRoles([0]);
-        //     $manager->persist($user);
-
-        //     $manager->flush();
-
-        //     return $this->redirectToRoute('utilisateurs_show' , ['id' => $utilisateurs->getId()
-        // ]);
-        // }
-     
+        }     
         // Redirection du Formulaire vers le TWIG pour l’affichage avec
         return $this->render('utilisateurs/utilisateursedit.html.twig', [
             'formUtilisateurs' => $form->createView()
