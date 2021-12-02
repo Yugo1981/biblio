@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -62,7 +63,18 @@ class UtilisateursController extends AbstractController
                 ->add('password')
                 ->add('adresse')
                 ->add('email')
-                // ->add('roles')
+                ->add('roles' ,
+            ChoiceType::class,[
+                'label' => 'Rôle' ,
+                'choices' => [
+                    'Utilisateur' => 'ROLE_USER',
+                    'Admin' => 'ROLE_ADMIN'
+                ] ,
+                  'multiple' => true,
+                  'expanded' => true,
+                'required' => 'true'
+            ])       
+
                 ->add('Envoyer', SubmitType::class)
             // Demande le résultat
             ->getForm();
@@ -71,14 +83,35 @@ class UtilisateursController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-           // $manager->persist($articles); 
-            $manager->flush();
+            // $manager->persist($utilisateurs); 
+             $manager->flush();
+ 
+             return $this->redirectToRoute(
+                 'utilisateurs_show',
+                 ['id' => $utilisateurs->getId()]
+             ); // Redirection vers la page
+         }
 
-            return $this->redirectToRoute(
-                'utilisateurs_show',
-                ['id' => $utilisateurs->getId()]
-            ); // Redirection vers la page
-        }      
+        //test
+        // if ($form->isSubmitted() && $form->isValid()) {
+        //    // $manager->persist($utilisateurs); 
+        //     $manager->flush();           
+        // }
+        
+        // $user = new Utilisateurs();
+        // $userForm = $this->createForm(UtilisateursType::class,$user);
+        
+        // $userForm->handleRequest($request);
+        // if($userForm->isSubmitted() && $userForm->isValid()) {
+        //     $user->setRoles([0]);
+        //     $manager->persist($user);
+
+        //     $manager->flush();
+
+        //     return $this->redirectToRoute('utilisateurs_show' , ['id' => $utilisateurs->getId()
+        // ]);
+        // }
+     
         // Redirection du Formulaire vers le TWIG pour l’affichage avec
         return $this->render('utilisateurs/utilisateursedit.html.twig', [
             'formUtilisateurs' => $form->createView()

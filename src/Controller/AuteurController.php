@@ -78,7 +78,7 @@ class AuteurController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-           // $manager->persist($articles); 
+           // $manager->persist($auteur); 
             $manager->flush();
 
             return $this->redirectToRoute(

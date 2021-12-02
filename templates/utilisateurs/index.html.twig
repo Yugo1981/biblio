@@ -19,7 +19,7 @@
                 <th>Password</th>
                 <th>Adresse</th>
                 <th>Email</th>
-                {# <th>Role</th> #}
+                <th>Role</th>
             </tr>
         </thead>
         <tbody>
@@ -34,9 +34,9 @@
                 <td>{{ utilisateur.password }}</td>
                 <td>{{ utilisateur.adresse }}</td>
                 <td>{{ utilisateur.email }}</td>
-        {# {% for role in roles %}    
-                <td>{{ utilisateur.roles }}</td>
-        {% endfor %} #}
+        {% for role in utilisateur.roles %}    
+                <td>{{ role }}</td> 
+        {% endfor %}
                 <td><button><a href="{{ path('utilisateurs_show' , {id: utilisateur.id}) }}">Cliquez</a></button></td>
                 <td><button><a href="{{ path('edit_utilisateur' , {id: utilisateur.id}) }}">Editer</a></button></td>
                 <td><button><a href="{{ path('delete_utilisateurs' , {id: utilisateur.id}) }}">Suppression</a></button></td>
