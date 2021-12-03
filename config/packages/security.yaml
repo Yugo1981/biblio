@@ -49,5 +49,8 @@ security:
         ROLE_SUPER_ADMIN: ROLE_ADMIN
 
     access_control:
+        # { path: ^/biblio, roles: ROLE_USER }
+        # { path: ^/users, roles: ROLE_USER }
+        # - { path: ^/profile, roles: ROLE_USER }
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }

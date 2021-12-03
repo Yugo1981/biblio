@@ -25,10 +25,10 @@
                 <th>Photo</th>
                 <td>{{ utilisateurs.photo }}</td>
             </tr>
-             {# <tr>
+             <tr>
                 <th>Date naissance</th>
-                <td>{{ utilisateurs.datenaissance }}</td>
-            </tr> #}
+                <td>{{ utilisateurs.datenaissance | date("d/m/Y")}}</td>
+            </tr>
              <tr>
                 <th>Login</th>
                 <td>{{ utilisateurs.login }}</td>
@@ -47,7 +47,9 @@
             </tr>
              <tr>
                 <th>Role</th>
-                {# <td>{{ utilisateurs.roles }}</td> #}
+        {% for role in utilisateurs.roles %}    
+                <td>{{ role }}</td> 
+        {% endfor %}
             </tr>         
         </tbody>
     </table>
