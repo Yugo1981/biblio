@@ -16,6 +16,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Core\Validator\Constraints\UserPassword;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * @Route("/users")
@@ -51,7 +53,7 @@ class UtilisateursController extends AbstractController
      * @Route("/edit/{id}", name="edit_utilisateur", methods={"GET" , "POST"})
      */
 
-    public function edition(Request $request, Utilisateurs $utilisateurs, EntityManagerInterface $manager)
+    public function edition(Request $request, Utilisateurs $utilisateurs, EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder)
     {
         // Creation de mon Formulaire
         $form = $this->createFormBuilder($utilisateurs) 
@@ -82,6 +84,8 @@ class UtilisateursController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $passwordcrypter = $encoder->encodePassword($utilisateurs,$utilisateurs->getPassword());
+            $utilisateurs->setPassword($passwordcrypter);
             // $manager->persist($utilisateurs); 
              $manager->flush();
  
