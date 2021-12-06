@@ -2,12 +2,16 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Article;
-use App\Entity\Categorie;
-
-use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\Persistence\ObjectManager;
 use Faker;
+use app\Entity\Auteur;
+use App\Entity\Article;
+
+use App\Entity\Location;
+use App\Entity\Categorie;
+use App\Entity\Commentaires;
+use App\Entity\Utilisateurs;
+use Doctrine\Persistence\ObjectManager;
+use Doctrine\Bundle\FixturesBundle\Fixture;
 
 class ArticleFixtures extends Fixture
 {
@@ -33,7 +37,7 @@ class ArticleFixtures extends Fixture
 
             // Créer 10 Catégories :
 
-            for ($i=0 ; $i<5 ; $i++ )
+            for ($i=0 ; $i<50 ; $i++ )
             {
                 $categorie = new Categorie();
 
@@ -42,20 +46,101 @@ class ArticleFixtures extends Fixture
 
                 $manager->persist($categorie);
 
-                //Maintenant on créer les articles
-                for ($j=0 ; $j<10 ; $j++)
-                {                   
-                    $articles = new Article();
-                    
-                    $articles->setTitre($faker->sentence())
-                         ->setContenu($faker->sentence($nbWords = 20, $variableNbWords = true))  
-                         // ->setDate(new \DateTime())
-                         ->setResume($faker->sentence())
-                         ->setImage($faker->sentence())
-                         ->setCategorie($categorie);
+            // Création des auteurs :
+            for($f=0 ; $f<50 ; $f++ )
+            {
+                $auteur = New Auteur();
+                $auteur->setNoms($faker->lastName);
+                $auteur->setPrenoms($faker->firstName);
+                $auteur->setMail($faker->email);
+                $auteur->setPassword($faker->password);   
 
-                $manager->persist($articles);
-                }
+                $manager->persist($auteur);
+            }
+
+            //Maintenant on créer les articles
+            for ($j=0 ; $j<50 ; $j++)
+            {                   
+                $articles = new Article();
+                
+                $articles->setTitre($faker->sentence())
+                     ->setContenu($faker->sentence($nbWords = 20, $variableNbWords = true))  
+                     ->setResume($faker->sentence())
+                     ->setImage($faker->sentence())
+                     ->setCategorie($categorie)
+                     ->setAuteur($auteur);
+
+            $manager->persist($articles);
+            }
+
+            //Creation d'utilisateur
+            
+            for ($l=0 ; $l<50 ; $l++ )
+            {
+                $utilisateurs = new Utilisateurs();
+                $nom = ["Follereau","Nwelha","Planiteye","Palakot","Nabi","Khassaowhneh","Ndao","Thuet","Traore","Lopez"];
+                $prenom = ["Fabrice","Paul","Pierre","Jacques","Igor","Valéry","Ange","Rudy","Modou","Moaath"];
+                $photo = ["1","2","3","4","5"];
+                $role = ["Admin","Utilisateur"];
+                shuffle($nom);
+                shuffle($prenom);
+                shuffle($photo);
+                shuffle($role);
+            
+                $utilisateurs->setNoms($nom[0])
+                        ->setPrenoms($prenom[0])
+                        ->setPhoto($photo[0])
+                        ->setDateNaissance(New \Datetime())
+                        ->setLogin("user $l")
+                        ->setPassword($faker->password)
+                        ->setAdresse($faker->address)
+                        ->setEmail($faker->email);
+            $manager->persist($utilisateurs);
+            }
+
+            //Creation de location
+
+            for ($k=0 ; $k<50 ; $k++ )
+            {
+                $locations = new Location();
+                $categorie = ["Adulte","Jeunesse", "Roman","Policier","Poésie","Aventure","Histoire","Informatique" ];
+                shuffle($categorie);
+                $image = ["1","2","3","4","5"];
+                $valeur = ["0.5","1","1.5","2","2.5","5","10","15","20"];
+                shuffle($valeur);
+                $status = ["Disponible","En prêt","Relance pour rendre"];
+                shuffle($status);
+                $acces = ["Disponible","Indisponible"];
+                shuffle($acces);
+                $a_la_une = ["1","2","3","4","5","6"];
+                shuffle($a_la_une);
+                $locations->setDate(New \Datetime())
+                        ->setTitre("Titre numéro $k")
+                        ->setcategorie($categorie[0])
+                        ->setImage($image[0])
+                        ->setDescription("Description de $k")
+                        ->setValeur($valeur[0])
+                        ->setAdresse($faker->address)
+                        ->setAccessibility($acces[0])
+                        ->setStatus($status[0])
+                        ->setALaUne($a_la_une[0]);
+                        
+            $manager->persist($locations);
+            }
+
+            //Creation de commentaire
+
+            for ($m = 0; $m < 50; $m++) {
+                $commentaire = new Commentaires();
+    
+                $commentaire->setAuteur($faker->name)
+                    ->setDate(new \DateTime())
+                    ->setMail($faker->email)
+                    ->setCommentaire($faker->sentence())
+                    ->setArticle($articles);
+    
+                $manager->persist($commentaire);
+            }           
             }
         $manager->flush();
     }

@@ -105,6 +105,13 @@ class Auteur implements UserInterface
         return $this->articles;
     }
 
+    public function setArticles($articles): self
+    {
+        $this->articles = $articles;
+
+        return $this;
+    }
+
     public function addArticle(Article $article): self
     {
         if (!$this->articles->contains($article)) {

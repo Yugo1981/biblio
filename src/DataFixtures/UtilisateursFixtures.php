@@ -47,10 +47,9 @@ class UtilisateursFixtures extends Fixture
                         ->setPhoto($photo[0])
                         ->setDateNaissance(New \Datetime())
                         ->setLogin("user $i")
-                        ->setPassword("mdp $i")
+                        ->setPassword($faker->password)
                         ->setAdresse($faker->address)
-                        ->setEmail($faker->email)
-                        ->setRole($role[0]);
+                        ->setEmail($faker->email);
             $manager->persist($utilisateurs);
             }
         $manager->flush();
