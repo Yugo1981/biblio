@@ -9,7 +9,9 @@
         <thead>
         <td><button><a href="{{ path('article_new') }}">Nouveau</a></button></td>
         <td><button><a href="{{ path('newform') }}">Nouveau Formulaire</a></button></td>
-            <tr>
+        <td><h2>Nombre d'article {{ nbarticle }}</h2></td>
+
+            <tr>            
                 <th>Id</th>
                 <th>Titre</th>
                 <th>Resume</th>
@@ -32,7 +34,7 @@
                 <td><button><a href="{{ path('articles_show' , {id: articl.id}) }}">Cliquez</a></button></td>
                 <td><button><a href="{{ path('edit_article' , {id: articl.id}) }}">Editer</a></button></td>
                 <td><button><a href="{{ path('delete_article' , {id: articl.id}) }}">Supression</a></button></td>             
-            </tr>
+            </tr>           
         {% else %}
             <tr>
                 <td colspan="5">Pas d'enregistrement trouvé</td>

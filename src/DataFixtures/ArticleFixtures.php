@@ -37,7 +37,7 @@ class ArticleFixtures extends Fixture
 
             // Créer 10 Catégories :
 
-            for ($i=0 ; $i<50 ; $i++ )
+            for ($i=0 ; $i<20 ; $i++ )
             {
                 $categorie = new Categorie();
 
@@ -47,7 +47,7 @@ class ArticleFixtures extends Fixture
                 $manager->persist($categorie);
 
             // Création des auteurs :
-            for($f=0 ; $f<50 ; $f++ )
+            for($f=0 ; $f<20 ; $f++ )
             {
                 $auteur = New Auteur();
                 $auteur->setNoms($faker->lastName);
@@ -59,7 +59,7 @@ class ArticleFixtures extends Fixture
             }
 
             //Maintenant on créer les articles
-            for ($j=0 ; $j<50 ; $j++)
+            for ($j=0 ; $j<20 ; $j++)
             {                   
                 $articles = new Article();
                 
@@ -75,7 +75,7 @@ class ArticleFixtures extends Fixture
 
             //Creation d'utilisateur
             
-            for ($l=0 ; $l<50 ; $l++ )
+            for ($l=0 ; $l<20 ; $l++ )
             {
                 $utilisateurs = new Utilisateurs();
                 $nom = ["Follereau","Nwelha","Planiteye","Palakot","Nabi","Khassaowhneh","Ndao","Thuet","Traore","Lopez"];
@@ -100,7 +100,7 @@ class ArticleFixtures extends Fixture
 
             //Creation de location
 
-            for ($k=0 ; $k<50 ; $k++ )
+            for ($k=0 ; $k<20 ; $k++ )
             {
                 $locations = new Location();
                 $categorie = ["Adulte","Jeunesse", "Roman","Policier","Poésie","Aventure","Histoire","Informatique" ];
@@ -130,7 +130,7 @@ class ArticleFixtures extends Fixture
 
             //Creation de commentaire
 
-            for ($m = 0; $m < 50; $m++) {
+            for ($m = 0; $m <20; $m++) {
                 $commentaire = new Commentaires();
     
                 $commentaire->setAuteur($faker->name)

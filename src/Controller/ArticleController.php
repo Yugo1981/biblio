@@ -196,6 +196,7 @@ class ArticleController extends AbstractController
     {
         return $this->render('article/index.html.twig', [
             'article' => $articleRepository->findAll(),
+            'nbarticle' => count($articleRepository->findAll()),
         ]);
     }
     
@@ -260,4 +261,20 @@ class ArticleController extends AbstractController
             // 'commentairesForm' => $commentairesForm->createView()
         ]);
     }
+
+    // /**
+    // * Requete SQL SELECT pour récupérer le nombre d'article 
+    // */
+    // public function calculArticle()
+    // {
+    //     $sql = "SELECT ".$this->_tableArticle.".id, ".$this->_tableArticle.".titre
+    //     , COUNT(*) as nb_article
+    //     FROM ".$this->_tableArticle."
+    //     GROUP BY ".$this->_tableArticle.".id, ".$this->_tableArticle.".titre
+    //     ORDER BY id DESC";
+    //     $requete = self::getDb()->prepare($sql);
+    //     $requete->execute();
+    //     $requete->setFetchMode(PDO::FETCH_OBJ);
+    //     return $requete;
+    // }
 }

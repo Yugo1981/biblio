@@ -30,6 +30,8 @@ class CategorieController extends AbstractController
     {
         return $this->render('categorie/index.html.twig', [
             'categorie' => $categorieRepository->findAll(),
+            'nbcategorie' => count($categorieRepository->findAll()),
+
         ]);
     }
     
