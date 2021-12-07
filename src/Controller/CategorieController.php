@@ -164,4 +164,22 @@ class CategorieController extends AbstractController
             'categorie' => $categorie,
         ]);
     }
+
+     /**
+     * @param $id
+     * @param CategorieRepository $categorierepo
+     * @Route("/recherche", name="categorie_recherche" , methods={"GET"})
+     */
+    public function rechercher(CategorieRepository $categorierepo): Response
+    {
+        $categorie = $categorierepo->findBy(array
+            ('titre' => 'Policier') ,
+            array('resume' => 'desc') , 5,5);
+            // Premier 5 en para la limite
+            // Second 5 le offset de pagination        
+
+        return $this->render('categorie/recherche.html.twig', [
+            'categorie' => $categorie,
+        ]);
+    }
 }

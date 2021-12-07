@@ -218,49 +218,91 @@ class ArticleController extends AbstractController
             'articles' => $articles,
         ]);
     }
-
+ 
     /**
+     *  @param $id
+     *  @param ArticleRepository, $articleRepository
      * @Route("/{id}", name="articles_show", methods={"GET" , "POST"})
      */
-    public function show(Article $article, Request $request, EntityManagerInterface $manager): Response
-    {    
+
+    public function show($id, ArticleRepository $articleRepository, EntityManagerInterface $manager, Article $article, Request $request)
+    {
         $commentaire = new Commentaires(); // Instanciation
 
-        // Creation de mon Formulaire
-        $form = $this->createForm(CommentairesType::class, $commentaire);    
+            // Creation de mon Formulaire
+            $form = $this->createForm(CommentairesType::class, $commentaire);      
+            // Analyse des Requetes & Traitement des information 
+            $form->handleRequest($request);    
+            if ($form->isSubmitted() && $form->isValid())
+            {
+                $manager->persist($commentaire);
+                $article->addCommentaire($commentaire);            
+                $manager->flush();
 
-        // Analyse des Requetes & Traitement des information 
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $manager->persist($commentaire);
-            $article->addCommentaire($commentaire);            
-            $manager->flush();
-        }
-
-        $commentaires = new Commentaires();
-        $commentairesForm = $this->createForm(CommentairesType::class, $commentaires);
-
-        $commentairesForm->handleRequest($request);
-
-        if($commentairesForm->isSubmitted() && $commentairesForm->isValid()) {
-            $commentaires->setDate(new \DateTime())
-                        ->setArticle($article);
-            $manager->persist($commentaires);
-
-            $manager->flush();
-
-            return $this->redirectToRoute('articles_show' , ['id' => $article->getId()
-        ]);
+                return $this->redirectToRoute('articles_show' , ['id' => $article->getId()]);
+            }    
+         
+        // Appel à Doctrine & au repository
+        // $articleRepository = $this->getDoctrine()->getRepository(Article::class);
+        //Recherche d'un auteur avec son identifiant
+        $article = $articleRepository->find($id);
+        // Passage vers twig
+            if (!$article) {
+                // throw $this->createNotFoundException(
+                //     "Navré pas d'article pour cet id : " .$id
+                //);       
+                return $this->render('article/erreur.html.twig');
+            }
+            return $this->render('article/affichage.html.twig', [
+                         // 'id'=>$article->getId(),
+                         'article' => $article,
+                         'form' => $form->createView()
+                    ]);
     }
+
+    //    /**
+    //  * @Route("/{id}", name="articles_show", methods={"GET" , "POST"})
+    //  */
+
+    // public function show(Article $article, Request $request, EntityManagerInterface $manager): Response
+    // {    
+    //     $commentaire = new Commentaires(); // Instanciation
+
+    //     // Creation de mon Formulaire
+    //     $form = $this->createForm(CommentairesType::class, $commentaire);    
+
+    //     // Analyse des Requetes & Traitement des information 
+    //     $form->handleRequest($request);
+
+    //     if ($form->isSubmitted() && $form->isValid()) {
+    //         $manager->persist($commentaire);
+    //         $article->addCommentaire($commentaire);            
+    //         $manager->flush();
+    //     }
+
+    //     $commentaires = new Commentaires();
+    //     $commentairesForm = $this->createForm(CommentairesType::class, $commentaires);
+
+    //     $commentairesForm->handleRequest($request);
+
+    //     if($commentairesForm->isSubmitted() && $commentairesForm->isValid()) {
+    //         $commentaires->setDate(new \DateTime())
+    //                     ->setArticle($article);
+    //         $manager->persist($commentaires);
+
+    //         $manager->flush();
+
+    //         return $this->redirectToRoute('articles_show' , ['id' => $article->getId()
+    //     ]);
+    // }
     
-        return $this->render('article/affichage.html.twig', [
-            // 'id'=>$article->getId(),
-            'article' => $article,
-            'form' => $form->createView()
-            // 'commentairesForm' => $commentairesForm->createView()
-        ]);
-    }
+    //     return $this->render('article/affichage.html.twig', [
+    //         // 'id'=>$article->getId(),
+    //         'article' => $article,
+    //         'form' => $form->createView()
+    //         // 'commentairesForm' => $commentairesForm->createView()
+    //     ]);
+    // }
 
     // /**
     // * Requete SQL SELECT pour récupérer le nombre d'article 

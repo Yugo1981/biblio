@@ -117,13 +117,34 @@ class AuteurController extends AbstractController
     }
 
      /**
+     * @param $id
+     * @param AuteurRepository , $auteurrepo
      * @Route("/{id}", name="auteur_show", methods={"GET"})
      */
-    public function show(Auteur $auteur): Response
+
+    public function show($id, AuteurRepository $auteurrepo)
     {
-        return $this->render('auteur/affichage.html.twig', [
-            'id'=>$auteur->getId(),
-            'auteur' => $auteur,
+        // Appel à Doctrine & au repository
+        // $auteursrepo = $this->getDoctrine()->getRepository(Autheur::class);
+        //Recherche d'un auteur avec son identifaint
+        $auteur = $auteurrepo->find($id);
+         // Passage à Twig de tableau avec des variables à utiliser
+       
+        if (!$auteur) {
+            throw $this->createNotFoundException(
+                'Desolé il y a Aucun Auteur pour ce id : '.$id
+            );
+        }
+        return $this->render('auteur/affichage.html.twig' , [
+            'auteur' => $auteur
         ]);
     }
+    // public function show(Auteur $auteur): Response
+    // {
+    //     return $this->render('auteur/affichage.html.twig', [
+    //         'id'=>$auteur->getId(),
+    //         'auteur' => $auteur,
+    //     ]);
+    // }
+
 }
