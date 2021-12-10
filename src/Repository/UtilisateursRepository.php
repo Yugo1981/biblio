@@ -19,6 +19,31 @@ class UtilisateursRepository extends ServiceEntityRepository
         parent::__construct($registry, Utilisateurs::class);
     }
 
+    public function findByUtilisateursCivilite()
+    {
+        $qb = $this->createQueryBuilder('u');
+        $qb
+             -> select('u.id' , 'u.noms' , 'u.prenoms' , 'u.civilite' , 'u.adresse')
+             -> where('u.civilite =:civilite ')
+             -> setParameter('civilite' , 'Monsieur')
+             ->orderBy('u.noms' , 'ASC');
+        
+        return $qb->getQuery()->getResult();
+    }
+
+    public function findByStatut()
+    {
+        $qb = $this->createQueryBuilder('u');
+        $qb
+             -> select('u.id' , 'u.noms', 'u.civilite' , 'u.statut')
+             -> where('u.statut =:statut ')
+             -> setParameter('statut' , '1')
+             ->orderBy('u.noms' , 'ASC');
+        
+        return $qb->getQuery()->getResult();
+
+    }
+
     // /**
     //  * @return Utilisateurs[] Returns an array of Utilisateurs objects
     //  */

@@ -64,6 +64,15 @@ class UtilisateursType extends AbstractType
             //     ] ,
             //     'required' => 'true'
             // ])
+            ->add('civilite',
+            ChoiceType::class,[
+                'label' => 'Civilité' ,
+                'choices' => [
+                    'Monsieur' => 'Monsieur',
+                    'Madame' => 'Madame'
+                ] ,
+                'multiple' => false,
+                'expanded' => true,])
             ->add("Envoyer",SubmitType::class)
         ;
     }

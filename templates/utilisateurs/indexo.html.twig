@@ -1,7 +1,4 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Nouveaux utilisateurs{% endblock %}
-
 {% block body %}
     <button class="button"><a href="{{ path('administration_biblio') }}">Administration</a></button>
     <h1>Utilisateurs index</h1>
@@ -12,14 +9,14 @@
             <tr>
                 <th>Id</th>
                 <th>Nom</th>
-                <th>Prenom</th>
+                {# <th>Prenom</th>
                 <th>Photo</th>
                 <th>Date naissance</th>
                 <th>Login</th>
                 <th>Password</th>
                 <th>Adresse</th>
                 <th>Email</th>
-                <th>Role</th>
+                <th>Role</th> #}
                 <th>Civilité</th>
                 <th>Statut</th>
 
@@ -30,7 +27,7 @@
             <tr>
                 <td>{{ utilisateur.id }}</td>
                 <td>{{ utilisateur.noms }}</td>
-                <td>{{ utilisateur.prenoms }}</td>
+                {# <td>{{ utilisateur.prenoms }}</td> #}
                 {# <td>{{ utilisateur.photo }}</td> #}
                 {# <td>{{ utilisateur.datenaissance | date("d/m/Y")}}</td>
                 <td>{{ utilisateur.login }}</td>

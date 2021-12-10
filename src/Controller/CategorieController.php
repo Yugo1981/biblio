@@ -154,21 +154,10 @@ class CategorieController extends AbstractController
             'categorie' => $categorie,
         ]);
     }
-
+    
     /**
-     * @Route("/{id}", name="categories_show", methods={"GET"})
-     */
-    public function show(Categorie $categorie): Response
-    {
-        return $this->render('categorie/affichage.html.twig', [
-            'categorie' => $categorie,
-        ]);
-    }
-
-     /**
-     * @param $id
-     * @param CategorieRepository $categorierepo
-     * @Route("/recherche", name="categorie_recherche" , methods={"GET"})
+     *  @param CategorieRepository , $categorierepo
+     *  @Route ("/valdo" , name="valdo_categorie")
      */
     public function rechercher(CategorieRepository $categorierepo): Response
     {
@@ -179,6 +168,16 @@ class CategorieController extends AbstractController
             // Second 5 le offset de pagination        
 
         return $this->render('categorie/recherche.html.twig', [
+            'categorie' => $categorie,
+        ]);
+    }
+
+    /**
+     * @Route("/{id}", name="categories_show", methods={"GET"})
+     */
+    public function show(Categorie $categorie): Response
+    {
+        return $this->render('categorie/affichage.html.twig', [
             'categorie' => $categorie,
         ]);
     }

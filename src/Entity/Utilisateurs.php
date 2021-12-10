@@ -86,6 +86,16 @@ class Utilisateurs implements UserInterface
      */
     private $date_naissance;
 
+    /**
+     * @ORM\Column(type="string", length=50, nullable=false)
+     */
+    private $civilite;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $statut;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -260,5 +270,29 @@ class Utilisateurs implements UserInterface
     public function __toString()
     {
         return $this->roles;
+    }
+
+    public function getCivilite(): ?string
+    {
+        return $this->civilite;
+    }
+
+    public function setCivilite(string $civilite): self
+    {
+        $this->civilite = $civilite;
+
+        return $this;
+    }
+
+    public function getStatut(): ?string
+    {
+        return $this->statut;
+    }
+
+    public function setStatut(string $statut): self
+    {
+        $this->statut = $statut;
+
+        return $this;
     }
 }

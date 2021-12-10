@@ -74,7 +74,27 @@ class UtilisateursController extends AbstractController
                 ] ,
                 'multiple' => true,
                 'expanded' => true,
-            ])       
+            ]) 
+            ->add('civilite',
+            ChoiceType::class,[
+                'label' => 'Civilité' ,
+                'choices' => [
+                    'Monsieur' => 'Monsieur',
+                    'Madame' => 'Madame'
+                ] ,
+                'multiple' => false,
+                'expanded' => true,])
+
+            ->add('statut',
+            ChoiceType::class,[
+                'label' => 'Statut' ,
+                'choices' => [
+                    'Publier' => 'Publier',
+                    'Dépublier' => 'Dépublier',
+                    'Archiver' => 'Archiver'
+                ] ,
+                'multiple' => false,
+                'expanded' => true,])
 
                 ->add('Envoyer', SubmitType::class)
             // Demande le résultat
@@ -117,8 +137,21 @@ class UtilisateursController extends AbstractController
      */
     public function index(UtilisateursRepository $utilisateursRepository): Response
     {
+        $utilisateurs = $utilisateursRepository->findByUtilisateursCivilite();
         return $this->render('utilisateurs/index.html.twig', [
-            'utilisateurs' => $utilisateursRepository->findAll(),
+            'utilisateurs' => $utilisateursRepository->findByUtilisateursCivilite(),
+        ]);
+    }
+
+    /**
+     * @Route("/indexo", name="users_indexo")
+     */
+    public function index2(UtilisateursRepository $utilisateursRepository): Response
+    {
+        $utilisateurs = $utilisateursRepository->findByStatut();
+        return $this->render('utilisateurs/indexo.html.twig', [
+            'utilisateurs' => $utilisateursRepository->findByStatut(),
+            // 'utilisateurs' => $utilisateursRepository->findAll(),
         ]);
     }
 
