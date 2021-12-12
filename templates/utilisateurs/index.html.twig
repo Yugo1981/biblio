@@ -41,9 +41,7 @@
                 <td>{{ role }}</td> 
         {% endfor %} #}
                 <td>{{ utilisateur.civilite }}</td>
-        {# {% for statu in utilisateur.statut %}
-                <td>{{ statu }}</td>
-        {% endfor %} #}
+                <td>{{ utilisateur.statut }}</td>
                 <td><button><a href="{{ path('utilisateurs_show' , {id: utilisateur.id}) }}">Cliquez</a></button></td>
                 <td><button><a href="{{ path('edit_utilisateur' , {id: utilisateur.id}) }}">Editer</a></button></td>
                 <td><button><a href="{{ path('delete_utilisateurs' , {id: utilisateur.id}) }}">Suppression</a></button></td>

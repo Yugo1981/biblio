@@ -82,10 +82,14 @@ class ArticleFixtures extends Fixture
                 $prenom = ["Fabrice","Paul","Pierre","Jacques","Igor","Valéry","Ange","Rudy","Modou","Moaath"];
                 $photo = ["1","2","3","4","5"];
                 $role = ["Admin","Utilisateur"];
+                $civil = ["Monsieur" , "Madame"];
+                $statu = ["Publier" , "Depublier" , "Archiver"];
                 shuffle($nom);
                 shuffle($prenom);
                 shuffle($photo);
                 shuffle($role);
+                shuffle($civil);
+                shuffle($statu);
             
                 $utilisateurs->setNoms($nom[0])
                         ->setPrenoms($prenom[0])
@@ -94,7 +98,9 @@ class ArticleFixtures extends Fixture
                         ->setLogin("user $l")
                         ->setPassword($faker->password)
                         ->setAdresse($faker->address)
-                        ->setEmail($faker->email);
+                        ->setEmail($faker->email)
+                        ->setCivilite($civil[0])
+                        ->setStatut($statu[0]);
             $manager->persist($utilisateurs);
             }
 
