@@ -20,6 +20,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
@@ -129,6 +130,17 @@ class ArticleController extends AbstractController
                         //'expanded' => true,)
                         ])
 
+                        ->add('statut',
+                            ChoiceType::class,[
+                                'label' => 'Statut' ,
+                                'choices' => [
+                                    'Publier' => 'Publier',
+                                    'Dépublier' => 'Dépublier',
+                                    'Archiver' => 'Archiver'
+                                ] ,
+                                'multiple' => false,
+                                'expanded' => true,])
+
                         ->add('Envoyer', SubmitType::class)
 
             // Demande le résultat
@@ -197,6 +209,17 @@ class ArticleController extends AbstractController
         return $this->render('article/index.html.twig', [
             'article' => $articleRepository->findAll(),
             'nbarticle' => count($articleRepository->findAll()),
+        ]);
+    }
+
+     /**
+     * @Route("/indexo", name="articles_indexo", methods={"GET"})
+     */
+    public function indexo(ArticleRepository $articleRepository): Response
+    {
+        $article = $articleRepository->findByArticleStatut();
+        return $this->render('article/indexo.html.twig', [
+            'article' => $articleRepository->findByArticleStatut(),
         ]);
     }
     

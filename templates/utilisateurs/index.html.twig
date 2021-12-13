@@ -31,15 +31,15 @@
                 <td>{{ utilisateur.id }}</td>
                 <td>{{ utilisateur.noms }}</td>
                 <td>{{ utilisateur.prenoms }}</td>
-                {# <td>{{ utilisateur.photo }}</td> #}
-                {# <td>{{ utilisateur.datenaissance | date("d/m/Y")}}</td>
+                <td>{{ utilisateur.photo }}</td>
+                <td>{{ utilisateur.datenaissance | date("d/m/Y")}}</td>
                 <td>{{ utilisateur.login }}</td>
                 <td>{{ utilisateur.password }}</td>
                 <td>{{ utilisateur.adresse }}</td>
                 <td>{{ utilisateur.email }}</td>
         {% for role in utilisateur.roles %}    
                 <td>{{ role }}</td> 
-        {% endfor %} #}
+        {% endfor %}
                 <td>{{ utilisateur.civilite }}</td>
                 <td>{{ utilisateur.statut }}</td>
                 <td><button><a href="{{ path('utilisateurs_show' , {id: utilisateur.id}) }}">Cliquez</a></button></td>

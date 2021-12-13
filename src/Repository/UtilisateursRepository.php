@@ -23,9 +23,9 @@ class UtilisateursRepository extends ServiceEntityRepository
     {
         $qb = $this->createQueryBuilder('u');
         $qb
-             -> select('u.id' , 'u.noms' , 'u.prenoms' , 'u.civilite' , 'u.adresse')
-             -> where('u.civilite =:civilite ')
-             -> setParameter('civilite' , 'Monsieur')
+             ->select('u')
+             ->where('u.civilite =:civilite ')
+             ->setParameter('civilite' , 'Monsieur')
              ->orderBy('u.noms' , 'ASC');
         
         return $qb->getQuery()->getResult();
@@ -35,9 +35,9 @@ class UtilisateursRepository extends ServiceEntityRepository
     {
         $qb = $this->createQueryBuilder('u');
         $qb
-             -> select('u.id' , 'u.noms', 'u.civilite' , 'u.statut')
-             -> where('u.statut =:statut ')
-             -> setParameter('statut' , '1')
+             ->select('u')
+             ->where('u.statut =:statut ')
+             ->setParameter('statut' , 'Publier')
              ->orderBy('u.noms' , 'ASC');
         
         return $qb->getQuery()->getResult();

@@ -68,6 +68,11 @@ class Article
      */
     private $commentaires;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $statut;
+
     
     
     public function __construct()
@@ -186,5 +191,17 @@ class Article
     public function __toString()
     {
         return $this->commentaire;
+    }
+
+    public function getStatut(): ?string
+    {
+        return $this->statut;
+    }
+
+    public function setStatut(string $statut): self
+    {
+        $this->statut = $statut;
+
+        return $this;
     }   
 }

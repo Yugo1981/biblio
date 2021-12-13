@@ -62,13 +62,17 @@ class ArticleFixtures extends Fixture
             for ($j=0 ; $j<20 ; $j++)
             {                   
                 $articles = new Article();
+                $statut = ["Publier" , "Depublier" , "Archiver"];
+                shuffle($statut);
+
                 
                 $articles->setTitre($faker->sentence())
                      ->setContenu($faker->sentence($nbWords = 20, $variableNbWords = true))  
                      ->setResume($faker->sentence())
                      ->setImage($faker->sentence())
                      ->setCategorie($categorie)
-                     ->setAuteur($auteur);
+                     ->setAuteur($auteur)
+                     ->setStatut($statut[0]);
 
             $manager->persist($articles);
             }
@@ -81,7 +85,7 @@ class ArticleFixtures extends Fixture
                 $nom = ["Follereau","Nwelha","Planiteye","Palakot","Nabi","Khassaowhneh","Ndao","Thuet","Traore","Lopez"];
                 $prenom = ["Fabrice","Paul","Pierre","Jacques","Igor","Valéry","Ange","Rudy","Modou","Moaath"];
                 $photo = ["1","2","3","4","5"];
-                $role = ["Admin","Utilisateur"];
+                $role = ["ROLE_USER","ROLE_ADMIN"];
                 $civil = ["Monsieur" , "Madame"];
                 $statu = ["Publier" , "Depublier" , "Archiver"];
                 shuffle($nom);
@@ -99,6 +103,7 @@ class ArticleFixtures extends Fixture
                         ->setPassword($faker->password)
                         ->setAdresse($faker->address)
                         ->setEmail($faker->email)
+                        ->setRoles([0])
                         ->setCivilite($civil[0])
                         ->setStatut($statu[0]);
             $manager->persist($utilisateurs);
