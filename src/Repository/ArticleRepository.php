@@ -32,6 +32,35 @@ class ArticleRepository extends ServiceEntityRepository
 
     }
 
+    public function findArticlePourUnAuteur()
+    {
+        // Articles d'un auteur + toutes publiées
+        $qb = $this->createQueryBuilder('a');
+        $qb
+            ->innerJoin('App\Entity\Auteur' , 'o' , 'WITH' , 'o=a.auteur')
+            // ->select(champ que l'on veut)
+            ->where('o.noms like :noms')
+            ->setParameter('noms' , 'Gilles')
+            ->andWhere('a.statut =:statut')
+            ->setParameter('statut' , 'Publier')
+            // ->setMaxResults(5)
+            ->orderBy('a.titre' , 'DESC');
+        
+        return $qb->getQuery()->getResult();
+
+    }
+
+    public function findByArticlePourUneCategorie()
+    {
+        $qb = $this->createQueryBuilder('a');
+        $qb
+            ->innerJoin(('App\Entity\Categorie') , 'o' , 'WITH' , 'o=a.categorie')
+            ->where('o.titre like :titre')
+            ->setParameter('titre' , 'Sport');
+
+        return $qb->getQuery()->getResult();
+    }
+
     // /**
     //  * @return Article[] Returns an array of Article objects
     //  */

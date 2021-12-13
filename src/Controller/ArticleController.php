@@ -222,6 +222,17 @@ class ArticleController extends AbstractController
             'article' => $articleRepository->findByArticleStatut(),
         ]);
     }
+
+     /**
+     * @Route("/dqlcategorie", name="articles_dqlcategorie", methods={"GET"})
+     */
+    public function dqlCategorie(ArticleRepository $articleRepository): Response
+    {
+        $article = $articleRepository->findArticlePourUnAuteur();
+        return $this->render('article/indexo.html.twig', [
+            'article' => $articleRepository->findArticlePourUnAuteur(),
+        ]);
+    }
     
      /**
      * @Route("/new", name="article_new")
