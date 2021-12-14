@@ -41,8 +41,26 @@ class UtilisateursRepository extends ServiceEntityRepository
              ->orderBy('u.noms' , 'ASC');
         
         return $qb->getQuery()->getResult();
-
     }
+
+    public function findStatutNom()
+    {
+         // Statut d'un utilisateur et par nom de famille
+         $qb = $this->createQueryBuilder('u');
+         $qb
+             ->select('u')
+             // ->select(champ que l'on veut)
+             ->where('u.noms')
+             ->setParameter('noms' , 'Follereau')
+             ->andWhere('u.civilite =:civilite')
+             ->setParameter('civilite' , 'Monsieur')
+             // ->setMaxResults(5)
+             ->orderBy('u.noms' , 'DESC');
+         
+         return $qb->getQuery()->getResult();
+    }
+
+
 
     // /**
     //  * @return Utilisateurs[] Returns an array of Utilisateurs objects

@@ -137,11 +137,25 @@ class UtilisateursController extends AbstractController
      */
     public function index(UtilisateursRepository $utilisateursRepository): Response
     {
-        $utilisateurs = $utilisateursRepository->findByUtilisateursCivilite();
+        $utilisateurs = $utilisateursRepository->findAll();
         return $this->render('utilisateurs/index.html.twig', [
-            'utilisateurs' => $utilisateursRepository->findByUtilisateursCivilite(),
+            'utilisateurs' => $utilisateursRepository->findAll(),
+            'nbutilisateurs' => count($utilisateursRepository->findAll()),
+
         ]);
     }
+
+    /**
+     * @Route("/dqlutilisateurstatut", name="users_dqlstatutnom")
+     */
+    public function dqlStatutNom(UtilisateursRepository $utilisateursRepository): Response
+    {
+        $utilisateurs = $utilisateursRepository->findStatutNom();
+        return $this->render('utilisateurs/indexo.html.twig', [
+            'utilisateurs' => $utilisateursRepository->findStatutNom(),
+        ]);
+    }
+
 
     /**
      * @Route("/indexo", name="users_indexo")
