@@ -40,7 +40,7 @@ class ArticleRepository extends ServiceEntityRepository
             ->innerJoin('App\Entity\Auteur' , 'o' , 'WITH' , 'o=a.auteur')
             // ->select(champ que l'on veut)
             ->where('o.noms like :noms')
-            ->setParameter('noms' , 'Gilles')
+            ->setParameter('noms' , 'Vaillant')
             ->andWhere('a.statut =:statut')
             ->setParameter('statut' , 'Publier')
             // ->setMaxResults(5)
