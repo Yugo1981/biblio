@@ -48,7 +48,6 @@ class UtilisateursRepository extends ServiceEntityRepository
          // Statut d'un utilisateur et par nom de famille
          $qb = $this->createQueryBuilder('u');
          $qb
-             ->select('u')
              // ->select(champ que l'on veut)
              ->where('u.noms')
              ->setParameter('noms' , 'Follereau')

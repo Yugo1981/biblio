@@ -6,7 +6,9 @@ use App\Entity\Auteur;
 use App\Entity\Article;
 use App\Entity\Categorie;
 use App\Form\ArticleType;
+use App\Form\PropertySearchType;
 use App\Entity\Commentaires;
+use App\Entity\PropertySearch;
 use App\Form\CommentairesType;
 use Doctrine\ORM\EntityManager;
 use App\Repository\ArticleRepository;
@@ -26,8 +28,7 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-
-
+use Symfony\Component\Form\Extension\Core\Type\SearchType;
 
 /**
  * @Route("/article")
@@ -204,11 +205,15 @@ class ArticleController extends AbstractController
     /**
      * @Route("/", name="articles_index", methods={"GET"})
      */
-    public function index(ArticleRepository $articleRepository): Response
+    public function index(ArticleRepository $articleRepository,Request $request): Response
     {
+        $search = New PropertySearch();
+        $form = $this->createForm(PropertySearchType::class, $search);
+        $form->handleRequest($request);
         return $this->render('article/index.html.twig', [
             'article' => $articleRepository->findAll(),
             'nbarticle' => count($articleRepository->findAll()),
+            'form' => $form->createView(),
         ]);
     }
 

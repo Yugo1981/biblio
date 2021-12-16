@@ -12,7 +12,9 @@
         <td><button><a href="{{ path('articles_indexo') }}">Archive Publier</a></button></td>
         <td><button><a href="{{ path('articles_dqlcategorie') }}">Recherche categorie</a></button></td>
         <td><button><a href="{{ path('articles_dqlarticleauteur') }}">Recherche d'article pour un auteur</a></button></td>
-                
+        <div>
+            {{ form(form)}}
+        </div>          
         <td><h2>Nombre d'article {{ nbarticle }}</h2></td>
 
             <tr>            
