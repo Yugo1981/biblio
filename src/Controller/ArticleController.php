@@ -203,17 +203,33 @@ class ArticleController extends AbstractController
     }
 
     /**
-     * @Route("/", name="articles_index", methods={"GET"})
+     * @Route("/", name="articles_index")
      */
     public function index(ArticleRepository $articleRepository,Request $request): Response
     {
         $search = New PropertySearch();
-        $form = $this->createForm(PropertySearchType::class, $search);
-        $form->handleRequest($request);
+        $form_search = $this->createForm(PropertySearchType::class, $search);
+        $form_search->handleRequest($request);
+
+        //J'initialise A tableau des articles, 
+        $articlesearch = [];
+        
+        if($form_search->isSubmitted() && $form_search->isValid()) {
+            $titre = $search->getTitre();   
+                if ($titre!="") 
+                //si on a fourni un nom d'article on affiche tous les articles ayant ce nom
+                $articlesearch= $articleRepository->findBy(['titre' => $titre] );
+                else   
+                // si aucun nom fourni, j'affiche tous les articles
+            // $articles= $articlesRepository->findArticlesPubliés();
+            $articlesearch = $articleRepository->findAll();
+        }
+
         return $this->render('article/index.html.twig', [
-            'article' => $articleRepository->findAll(),
+            // 'article' => $articleRepository->findAll(),
             'nbarticle' => count($articleRepository->findAll()),
-            'form' => $form->createView(),
+            'form_search' => $form_search->createView(),
+            'articlesearch' => $articlesearch,
         ]);
     }
 

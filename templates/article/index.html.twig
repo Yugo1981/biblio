@@ -12,42 +12,31 @@
         <td><button><a href="{{ path('articles_indexo') }}">Archive Publier</a></button></td>
         <td><button><a href="{{ path('articles_dqlcategorie') }}">Recherche categorie</a></button></td>
         <td><button><a href="{{ path('articles_dqlarticleauteur') }}">Recherche d'article pour un auteur</a></button></td>
+       
         <div>
-            {{ form(form)}}
-        </div>          
+            {{ form(form_search)}}
+        </div>  
+                
         <td><h2>Nombre d'article {{ nbarticle }}</h2></td>
 
-            <tr>            
-                <th>Id</th>
-                <th>Titre</th>
-                <th>Resume</th>
-                <th>Categorie</th>
-                <th>Auteur</th>
-                <th>Statut</th>
-                <th>Action</th>
-                <th>Edition</th>
-                <th>Suppression</th>               
+        {% if articlesearch %}
+
+            <tr>             
+                <th>Titre</th>                           
             </tr>
         </thead>
         <tbody>
-        {% for articl in article %}
+        {% for articl in articlesearch %}
             <tr>
-                <td>{{ articl.id }}</td>
-                <td>{{ articl.titre }}</td>
-                <td>{{ articl.resume }}</td>
-                <td>{{ articl.categorie.titre }}</td>
-                <td>{{ articl.auteur.noms }}</td>
-                <td>{{ articl.statut }}</td>
-                {# <td>{{ articl.commentaires.commentaire }}</td> #}
-                <td><button><a href="{{ path('articles_show' , {id: articl.id}) }}">Cliquez</a></button></td>
-                <td><button><a href="{{ path('edit_article' , {id: articl.id}) }}">Editer</a></button></td>
-                <td><button><a href="{{ path('delete_article' , {id: articl.id}) }}">Supression</a></button></td>             
+               
+                <td>{{ articl.titre }}</td>            
             </tr>           
         {% else %}
             <tr>
                 <td colspan="5">Pas d'enregistrement trouvé</td>
             </tr>
         {% endfor %}
+        {% endif %}
         </tbody>
     </table>
 {% endblock %}

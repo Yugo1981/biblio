@@ -19,6 +19,16 @@ class CategorieRepository extends ServiceEntityRepository
         parent::__construct($registry, Categorie::class);
     }
 
+    public function findByArticlePourUneCategorie()
+    {
+        $qb = $this->createQueryBuilder('a');
+        $qb
+            ->innerJoin(('App\Entity\Categorie') , 'o' , 'WITH' , 'o=a.categorie')
+            ->where('o.titre like :titre');
+
+        return $qb->getQuery()->getResult();
+    }
+
     // /**
     //  * @return Categorie[] Returns an array of Categorie objects
     //  */

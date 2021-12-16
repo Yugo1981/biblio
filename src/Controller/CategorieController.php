@@ -4,16 +4,18 @@ namespace App\Controller;
 
 
 use App\Entity\Categorie;
-use App\Repository\CategorieRepository;
 use App\Form\CategorieType;
-
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\Request;
+use App\Entity\CategorieSearch;
 
 use Doctrine\ORM\EntityManager;
+use App\Form\CategorieSearchType;
+use App\Repository\CategorieRepository;
 use Doctrine\ORM\EntityManagerInterface;
+
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
 /**
@@ -26,12 +28,30 @@ class CategorieController extends AbstractController
         /**
      * @Route("/", name="categorie")
      */
-    public function index(CategorieRepository $categorieRepository): Response
+    public function index(CategorieRepository $categorieRepository, Request $request): Response
     {
-        return $this->render('categorie/index.html.twig', [
-            'categorie' => $categorieRepository->findAll(),
-            'nbcategorie' => count($categorieRepository->findAll()),
+        $searchcat = New CategorieSearch();
+        $form_search = $this->createForm(CategorieSearchType::class, $searchcat);
+        $form_search->handleRequest($request);
 
+        //J'initialise A tableau des categories, 
+        $article = [];
+        
+        if($form_search->isSubmitted() && $form_search->isValid()) {
+            $category = $searchcat->getCategorie();   
+                if ($category!="") 
+                //si on a fourni un nom d'une categorie on affiche toutes les categories ayant ce nom
+                $article = $category->getArticle();
+                else   
+                // si aucun nom fourni, j'affiche tous les categories
+            // $categorie= $categorieRepository->findArticlesPubliés();
+            $categoriesearch = $categorieRepository->findAll();
+        }
+        return $this->render('categorie/index.html.twig', [
+            // 'categorie' => $categorieRepository->findAll(),
+            'nbcategorie' => count($categorieRepository->findAll()),
+            'form_search' => $form_search->createView(),
+            'categoriesearch' => $categoriesearch,
         ]);
     }
     
