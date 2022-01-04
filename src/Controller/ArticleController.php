@@ -287,12 +287,10 @@ class ArticleController extends AbstractController
     }
  
     /**
-     *  @param $id
-     *  @param ArticleRepository, $articleRepository
-     * @Route("/{id}", name="articles_show", methods={"GET" , "POST"})
+     * @Route("/{slug}", name="articles_show", methods={"GET"})
      */
 
-    public function show($id, ArticleRepository $articleRepository, EntityManagerInterface $manager, Article $article, Request $request)
+    public function show(ArticleRepository $articleRepository, EntityManagerInterface $manager, Article $article, Request $request)
     {
         $commentaire = new Commentaires(); // Instanciation
 
@@ -306,20 +304,20 @@ class ArticleController extends AbstractController
                 $article->addCommentaire($commentaire);            
                 $manager->flush();
 
-                return $this->redirectToRoute('articles_show' , ['id' => $article->getId()]);
+                return $this->redirectToRoute('articles_show' , ['slug' => $article->getSlug()]);
             }    
          
         // Appel à Doctrine & au repository
         // $articleRepository = $this->getDoctrine()->getRepository(Article::class);
         //Recherche d'un auteur avec son identifiant
-        $article = $articleRepository->find($id);
+        // $article = $articleRepository->find($id);
         // Passage vers twig
-            if (!$article) {
+            // if (!$article) {
                 // throw $this->createNotFoundException(
                 //     "Navré pas d'article pour cet id : " .$id
                 //);       
-                return $this->render('article/erreur.html.twig');
-            }
+                // return $this->render('article/erreur.html.twig');
+            // }
             return $this->render('article/affichage.html.twig', [
                          // 'id'=>$article->getId(),
                          'article' => $article,

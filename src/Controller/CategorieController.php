@@ -30,17 +30,17 @@ class CategorieController extends AbstractController
      */
     public function index(CategorieRepository $categorieRepository, Request $request): Response
     {
-        $searchcat = New CategorieSearch();
-        $form_search = $this->createForm(CategorieSearchType::class, $searchcat);
+        $categoriesearch = New CategorieSearch();
+        $form_search = $this->createForm(CategorieSearchType::class, $categoriesearch);
         $form_search->handleRequest($request);
 
         //J'initialise A tableau des categories, 
         $article = [];
         
         if($form_search->isSubmitted() && $form_search->isValid()) {
-            $category = $searchcat->getCategorie();   
+            $category = $categoriesearch->getCategorie();   
                 if ($category!="") 
-                //si on a fourni un nom d'une categorie on affiche toutes les categories ayant ce nom
+                // //si on a fourni un nom d'une categorie on affiche toutes les categories ayant ce nom
                 $article = $category->getArticle();
                 else   
                 // si aucun nom fourni, j'affiche tous les categories

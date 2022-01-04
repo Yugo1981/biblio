@@ -27,10 +27,12 @@
         </thead>
         <tbody>
         {% for articl in articlesearch %}
-            <tr>
-               
+            <tr>               
                 <td>{{ articl.titre }}</td>            
-            </tr>           
+            </tr>
+            <tr>
+                <a href="{{ path('articles_show', {'slug':articl.slug}) }}">Afficher</a>
+            </tr>            
         {% else %}
             <tr>
                 <td colspan="5">Pas d'enregistrement trouvé</td>

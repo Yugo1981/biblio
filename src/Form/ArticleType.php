@@ -2,17 +2,18 @@
 
 namespace App\Form;
 
+use App\Entity\Auteur;
 use App\Entity\Article;
 use App\Entity\Categorie;
-use App\Entity\Auteur;
 use App\Entity\Commentaires;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 
 class ArticleType extends AbstractType
@@ -70,6 +71,17 @@ class ArticleType extends AbstractType
                 // 'multiple' => true,
                 //'expanded' => true,)
              ])
+
+             ->add('statut',
+            ChoiceType::class,[
+                'label' => 'Statut' ,
+                'choices' => [
+                    'Publier' => 'Publier',
+                    'Archiver' => 'Archiver',
+                    'Dépublier' => 'Dépublier'
+                ] ,
+                'multiple' => false,
+                'expanded' => true,])
             
             ->add('Envoyer', SubmitType::class)
         ;        
