@@ -13,6 +13,7 @@
                 <th>Categorie</th>
                 <th>Auteur</th>
                 <th>Statut</th>
+                <th>Image</th>
                 <th>Action</th>
                 <th>Edition</th>
                 <th>Suppression</th>               
@@ -26,6 +27,8 @@
                 <td>{{ articl.categorie.titre }}</td>
                 <td>{{ articl.auteur.noms }}</td>
                 <td>{{ articl.statut }}</td>
+                <td><img src="{{ vich_uploader_asset(articl, 'imageFile') }}" class="img-fluid img-thumbnail" alt="{{ articl.titre }}">
+</td>
                 <td><button><a href="{{ path('articles_show', {'slug':articl.slug}) }}">Cliquez</a></button></td>
                 <td><button><a href="{{ path('edit_article' , {id: articl.id}) }}">Editer</a></button></td>
                 <td><button><a href="{{ path('delete_article' , {id: articl.id}) }}">Supression</a></button></td>             
