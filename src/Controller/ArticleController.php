@@ -6,29 +6,31 @@ use App\Entity\Auteur;
 use App\Entity\Article;
 use App\Entity\Categorie;
 use App\Form\ArticleType;
-use App\Form\PropertySearchType;
 use App\Entity\Commentaires;
 use App\Entity\PropertySearch;
 use App\Form\CommentairesType;
 use Doctrine\ORM\EntityManager;
+use App\Form\PropertySearchType;
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\FormBuilderInterface;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\SearchType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\SearchType;
 
 /**
  * @Route("/article")
@@ -87,19 +89,19 @@ class ArticleController extends AbstractController
                                 'required' => 'true'
                             ])
                         ->add('resume',
-                            TextType::class,[
+                            CKEditorType::class,[
                                 'label' =>'Resume' ,
                                 'attr' => ['placeholder' => 'Résumé'],
                                 'required' => 'true'
                             ])
                         ->add('contenu',
-                            TextType::class,[
+                            CKEditorType::class,[
                                 'label' =>'Contenu' ,
                                 'attr' => ['placeholder' => 'Contenu'],
                                 'required' => 'true'
                             ])
-                        ->add('image' ,
-                            TextType::class,[
+                            ->add('imageFile' ,
+                            VichImageType::class,[
                                 'label' =>'Image' ,
                                 'attr' => ['placeholder' => 'Photo'],
                                 'required' => 'true'
@@ -154,6 +156,8 @@ class ArticleController extends AbstractController
            // $manager->persist($articles); 
             $manager->flush();
 
+
+            // return $this->redirectToRoute('articles_show' , ['slug' => $articles->getSlug()]);
             return $this->redirectToRoute(
                 'articles_show',
                 ['id' => $articles->getId()]

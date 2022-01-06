@@ -7,6 +7,7 @@ use App\Entity\Article;
 use App\Entity\Categorie;
 use App\Entity\Commentaires;
 use Symfony\Component\Form\AbstractType;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -29,13 +30,13 @@ class ArticleType extends AbstractType
                  'required' => 'true'
              ])
             ->add('resume',
-             TextType::class,[
+            CKEditorType::class,[
                  'label' =>'Resume' ,
                  'attr' => ['placeholder' => 'Résumé'],
                  'required' => 'true'
              ])
             ->add('contenu',
-             TextType::class,[
+            CKEditorType::class,[
                  'label' =>'Contenu' ,
                  'attr' => ['placeholder' => 'Contenu'],
                  'required' => 'true'
