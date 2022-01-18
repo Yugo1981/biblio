@@ -20,6 +20,9 @@ class UtilisateursTest extends TestCase
                     ->setAdresse("1 rue")
                     ->setEmail("Valdo@toto.fr")
                     ->setDateNaissance($date)
+                    ->setCivilite("Mr")
+                    ->setStatut("Publier")
+                    ->setPassword("Zou")
                     ;
 
         $this->assertTrue($utilisateurs->getNoms() === "Yugo");
@@ -29,6 +32,9 @@ class UtilisateursTest extends TestCase
         $this->assertTrue($utilisateurs->getAdresse() === "1 rue");
         $this->assertTrue($utilisateurs->getEmail() === "Valdo@toto.fr");
         $this->assertTrue($utilisateurs->getDateNaissance() === $date);
+        $this->assertTrue($utilisateurs->getCivilite() === "Mr");
+        $this->assertTrue($utilisateurs->getStatut() === "Publier");
+        $this->assertTrue($utilisateurs->getPassword() === "Zou");
 
     }
 
@@ -44,6 +50,9 @@ class UtilisateursTest extends TestCase
                 ->setAdresse("1 rue")
                 ->setEmail("Valdo@toto.fr")
                 ->setDateNaissance($date)
+                ->setCivilite("Mr")
+                ->setStatut("Publier")
+                ->setPassword("Zou")
             ;
         // $this->assertTrue(true);
         $this->assertFalse($utilisateurs->getNoms() !== "Yugo");
@@ -53,13 +62,17 @@ class UtilisateursTest extends TestCase
         $this->assertFalse($utilisateurs->getAdresse() !== "1 rue");
         $this->assertFalse($utilisateurs->getEmail() !== "Valdo@toto.fr");
         $this->assertFalse($utilisateurs->getDateNaissance() !== $date);
+        $this->assertFalse($utilisateurs->getCivilite() !== "Mr");
+        $this->assertFalse($utilisateurs->getStatut() !== "Publier");
+        $this->assertFalse($utilisateurs->getPassword() !== "Zou");
     }
 
     public function testVide(): void
     {
         $date = new DateTime();
         $utilisateurs = new Utilisateurs();
-        // $this->assertTrue(true);
+        // $this->assertEmpty(empty);
+        $this->assertEmpty($utilisateurs->getId());
         $this->assertEmpty($utilisateurs->getNoms());
         $this->assertEmpty($utilisateurs->getPrenoms());
         $this->assertEmpty($utilisateurs->getPhoto());
@@ -67,5 +80,8 @@ class UtilisateursTest extends TestCase
         $this->assertEmpty($utilisateurs->getAdresse());
         $this->assertEmpty($utilisateurs->getEmail());
         $this->assertEmpty($utilisateurs->getDateNaissance());
+        $this->assertEmpty($utilisateurs->getCivilite());
+        $this->assertEmpty($utilisateurs->getStatut());
+        $this->assertEmpty($utilisateurs->getPassword());
     }
 }

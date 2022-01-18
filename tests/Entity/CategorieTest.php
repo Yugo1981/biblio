@@ -34,8 +34,10 @@ class CategorieTest extends TestCase
     public function testVide(): void
     {
         $categorie = new Categorie();
-        // $this->assertTrue(true);
+        // $this->assertEmpty(empty);
+        $this->assertEmpty($categorie->getId());
         $this->assertEmpty($categorie->getTitre());
         $this->assertEmpty($categorie->getResume());
+        $this->assertEmpty($categorie->getArticle());
     }
 }

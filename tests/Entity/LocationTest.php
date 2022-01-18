@@ -72,6 +72,7 @@ class LocationTest extends TestCase
         $date = new DateTime();
         $location = new Location();
         // $this->assertEmpty(empty);
+        $this->assertEmpty($location->getId());
         $this->assertEmpty($location->getTitre());
         $this->assertEmpty($location->getDate());
         $this->assertEmpty($location->getCategorie());

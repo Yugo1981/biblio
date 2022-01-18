@@ -21,7 +21,7 @@ class CommentairesTest extends TestCase
 
         $this->assertTrue($commentaires->getAuteur() === "Yugo");
         $this->assertTrue($commentaires->getMail() === "Valdo@toto.fr");
-        $this->assertTrue($commentaires->getDate($date));
+        $this->assertTrue($commentaires->getDate() === $date);
         $this->assertTrue($commentaires->getCommentaire() === "La vie");
     }
 
@@ -45,7 +45,8 @@ class CommentairesTest extends TestCase
     public function testVide(): void
     {
         $commentaires = new Commentaires();
-        // $this->assertTrue(true);
+        // $this->assertEmpty(Empty);
+        $this->assertEmpty($commentaires->getId());
         $this->assertEmpty($commentaires->getAuteur());
         $this->assertEmpty($commentaires->getMail());
         $this->assertEmpty($commentaires->getDate());
