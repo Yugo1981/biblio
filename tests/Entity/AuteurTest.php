@@ -16,15 +16,18 @@ class AuteurTest extends TestCase
         $auteur
             ->setNoms("Valdo")
             ->setPrenoms("Fab")
-            ->setMail("Toto@toto.fr")
+            ->setMail("Toto")
             ->setPassword("123")
-            ->setArticles($article)
+            ->setUsername("username")
+            ->setRoles(["ROLE_USER"])
             ;
         $this->assertTrue($auteur->getNoms() === "Valdo");
         $this->assertTrue($auteur->getPrenoms() === "Fab");
-        $this->assertTrue($auteur->getMail() === "Toto@toto.fr");
+        $this->assertTrue($auteur->getMail() === "Toto");
         $this->assertTrue($auteur->getPassword() === "123");
-        $this->assertTrue($auteur->getArticles() === $article);
+        $this->assertTrue($auteur->getUsername() === "username");
+        $this->assertTrue($auteur->getRoles() === ["ROLE_USER"]);
+
     }
 
     public function testNonValide(): void
@@ -34,16 +37,18 @@ class AuteurTest extends TestCase
         $auteur
             ->setNoms("Valdo")
             ->setPrenoms("Fab")
-            ->setMail("Toto@toto.fr")
+            ->setMail("Toto")
             ->setPassword("123")
-            ->setArticles($article)
+            ->setUsername("username")
+            ->setRoles(["ROLE_USER"])
             ;
         // $this->assertFalse(false);
         $this->assertFalse($auteur->getNoms() !== "Valdo");
         $this->assertFalse($auteur->getPrenoms() !== "Fab");
-        $this->assertFalse($auteur->getMail() !== "Toto@toto.fr");
+        $this->assertFalse($auteur->getMail() !== "Toto");
         $this->assertFalse($auteur->getPassword() !== "123");
-        $this->assertFalse($auteur->getArticles() !== $article);
+        $this->assertFalse($auteur->getUsername() !== "username");
+        $this->assertFalse($auteur->getRoles() !== ["ROLE_USER"]);
     }
 
     public function testVide(): void
@@ -54,16 +59,23 @@ class AuteurTest extends TestCase
         $this->assertEmpty($auteur->getNoms());
         $this->assertEmpty($auteur->getPrenoms());
         $this->assertEmpty($auteur->getMail());
-        $this->assertEmpty($auteur->getPassword());
-        $this->assertEmpty($auteur->getArticles());
+        $this->assertEmpty($auteur->getUsername());
     }
 
-    public function addArticleValide(Article $article): self
+    public function testaddArticleValide()
     {
+        $auteur = new Auteur();
         $article = new Article();
-        $result = $article->add("Maurice");
 
-        //assert true(true)
-        $this->assertEquals("Maurice" , $result);
+        // getArticle()
+        $this->assertEmpty($auteur->getArticles());
+
+        //addArticle()
+        $auteur->addArticle($article);
+        $this->assertContains($article,$auteur->getArticles());
+        
+        //removeArticle()
+        $auteur->removeArticle($article);
+        $this->assertEmpty($auteur->getArticles());
     }
 }

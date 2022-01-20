@@ -2,6 +2,7 @@
 
 namespace App\Tests\Entity;
 
+use App\Entity\Article;
 use App\Entity\Categorie;
 use PHPUnit\Framework\TestCase;
 
@@ -40,4 +41,19 @@ class CategorieTest extends TestCase
         $this->assertEmpty($categorie->getResume());
         $this->assertEmpty($categorie->getArticle());
     }
+
+    public function testaddArticles(){
+        
+        $categorie = new Categorie();
+        $article = new Article();
+      
+
+       $this->assertEmpty($categorie->getArticle());
+
+       $categorie->addArticle($article);
+       $this->assertContains($article, $categorie->getArticle());
+
+       $categorie->removeArticle($article);
+       $this->assertEmpty($categorie->getArticle());
+   }
 }

@@ -6,6 +6,7 @@ namespace App\Tests\Entity;
 use App\Entity\Article;
 use App\Entity\Auteur;
 use App\Entity\Categorie;
+use App\Entity\Commentaires;
 use DateTime;
 use PHPUnit\Framework\TestCase;
 
@@ -26,6 +27,7 @@ class ArticleTest extends TestCase
             ->setCategorie($categorie)
             ->setAuteur($auteur)
             ->setUpdatedAt($date)
+            ->setImageName("pnj1")
             ;
         $this->assertTrue($article->getTitre() === "Toto");
         $this->assertTrue($article->getContenu() === "Fab");
@@ -35,9 +37,7 @@ class ArticleTest extends TestCase
         $this->assertTrue($article->getCategorie() === $categorie);
         $this->assertTrue($article->getAuteur() === $auteur);
         $this->assertTrue($article->getUpdatedAt() === $date);
-
-
-
+        $this->assertTrue($article->getImageName() === "pnj1");
     }
 
     public function testNonValide(): void
@@ -55,6 +55,7 @@ class ArticleTest extends TestCase
             ->setCategorie($categorie)
             ->setAuteur($auteur)
             ->setUpdatedAt($date)
+            ->setImageName("pnj1")
             ;
         // $this->assertFalse(false);
         $this->assertFalse($article->getTitre() !== "Valdo");
@@ -65,6 +66,7 @@ class ArticleTest extends TestCase
         $this->assertFalse($article->getCategorie() !== $categorie);
         $this->assertFalse($article->getAuteur() !== $auteur);
         $this->assertFalse($article->getUpdatedAt() !== $date);
+        $this->assertFalse($article->getImageName() !== "pnj1");
     }
 
     public function testVide(): void
@@ -80,5 +82,20 @@ class ArticleTest extends TestCase
         $this->assertEmpty($article->getCategorie());
         $this->assertEmpty($article->getAuteur());
         $this->assertEmpty($article->getUpdatedAt());
+        $this->assertEmpty($article->getImageName());
+    }
+
+    public function testAddRomveCommantaires()
+    {
+        $commentaire = new Commentaires();
+        $article = new Article();
+
+        $this->assertEmpty($commentaire->getArticle());
+
+        $article->addCommentaire($commentaire);
+        $this->assertContains($commentaire , $article->getCommentaires());
+ 
+        $article->removeCommentaire($commentaire);
+        $this->assertEmpty($commentaire->getArticle());
     }
 }

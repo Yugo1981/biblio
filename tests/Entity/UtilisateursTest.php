@@ -18,11 +18,13 @@ class UtilisateursTest extends TestCase
                     ->setPhoto("1")
                     ->setLogin("Fabrice")
                     ->setAdresse("1 rue")
-                    ->setEmail("Valdo@toto.fr")
+                    ->setEmail("Valdo")
                     ->setDateNaissance($date)
                     ->setCivilite("Mr")
                     ->setStatut("Publier")
                     ->setPassword("Zou")
+                    ->setUsername("Valdo")
+                    ->setRoles(["ROLE_USER"])
                     ;
 
         $this->assertTrue($utilisateurs->getNoms() === "Yugo");
@@ -30,12 +32,13 @@ class UtilisateursTest extends TestCase
         $this->assertTrue($utilisateurs->getPhoto() === "1");
         $this->assertTrue($utilisateurs->getLogin() === "Fabrice");
         $this->assertTrue($utilisateurs->getAdresse() === "1 rue");
-        $this->assertTrue($utilisateurs->getEmail() === "Valdo@toto.fr");
+        $this->assertTrue($utilisateurs->getEmail() === "Valdo");
         $this->assertTrue($utilisateurs->getDateNaissance() === $date);
         $this->assertTrue($utilisateurs->getCivilite() === "Mr");
         $this->assertTrue($utilisateurs->getStatut() === "Publier");
         $this->assertTrue($utilisateurs->getPassword() === "Zou");
-
+        $this->assertTrue($utilisateurs->getUsername() === "Valdo");
+        $this->assertTrue($utilisateurs->getRoles() === ["ROLE_USER"]);
     }
 
     public function testNonValide(): void
@@ -48,11 +51,13 @@ class UtilisateursTest extends TestCase
                 ->setPhoto("1")
                 ->setLogin("Fabrice")
                 ->setAdresse("1 rue")
-                ->setEmail("Valdo@toto.fr")
+                ->setEmail("Valdo")
                 ->setDateNaissance($date)
                 ->setCivilite("Mr")
                 ->setStatut("Publier")
                 ->setPassword("Zou")
+                ->setUsername("Valdo")
+                ->setRoles(["ROLE_USER"])
             ;
         // $this->assertTrue(true);
         $this->assertFalse($utilisateurs->getNoms() !== "Yugo");
@@ -60,11 +65,13 @@ class UtilisateursTest extends TestCase
         $this->assertFalse($utilisateurs->getPhoto() !== "1");
         $this->assertFalse($utilisateurs->getLogin() !== "Fabrice");
         $this->assertFalse($utilisateurs->getAdresse() !== "1 rue");
-        $this->assertFalse($utilisateurs->getEmail() !== "Valdo@toto.fr");
+        $this->assertFalse($utilisateurs->getEmail() !== "Valdo");
         $this->assertFalse($utilisateurs->getDateNaissance() !== $date);
         $this->assertFalse($utilisateurs->getCivilite() !== "Mr");
         $this->assertFalse($utilisateurs->getStatut() !== "Publier");
         $this->assertFalse($utilisateurs->getPassword() !== "Zou");
+        $this->assertFalse($utilisateurs->getUsername() !== "Valdo");
+        $this->assertFalse($utilisateurs->getRoles() !== ["ROLE_USER"]);        
     }
 
     public function testVide(): void
@@ -82,6 +89,7 @@ class UtilisateursTest extends TestCase
         $this->assertEmpty($utilisateurs->getDateNaissance());
         $this->assertEmpty($utilisateurs->getCivilite());
         $this->assertEmpty($utilisateurs->getStatut());
-        $this->assertEmpty($utilisateurs->getPassword());
+        $this->assertEmpty($utilisateurs->getUserIdentifier());
+        $this->assertEmpty($utilisateurs->getUsername());
     }
 }
